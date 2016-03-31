@@ -31,4 +31,14 @@ io.on('connection',function (socket) {
         io.emit('chat', data.name + " said : " + data.message);
 
     });
+
+    socket.on('join', function(data) {
+        // ส่งข้อมูลการ join room เข้ามา
+
+    });
+
+    socket.on('leave', function(data) {
+        // ส่งข้อมูลการ leave room เข้ามา
+        
+    });
 })
