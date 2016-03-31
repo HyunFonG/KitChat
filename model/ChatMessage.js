@@ -7,7 +7,7 @@ var chatMessageSchema = new Schema({
 	name: String,
 	room: String,
 	message: String,
-	timestamp: Date
+	create_at: Date
 });
 
 var ChatMessage = mongoose.model('ChatMessage',chatMessageSchema);

@@ -26,7 +26,8 @@ io.on('connection',function (socket) {
 	socket.on('chat', function(data) {
         // แสดงข้อมูลที่ได้ ออกมาทาง console
         //console.log(message);
-        ChatMessage({name: data.name, room: data.room, message: data.message }).save();
+        var current_time = (new Date()).getTime();
+        ChatMessage({name: data.name, room: data.room, message: data.message, create_at : current_time }).save();
         io.emit('chat', data.name + " said : " + data.message);
 
     });
