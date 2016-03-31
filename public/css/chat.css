@@ -1,0 +1,87 @@
+html,body{
+    color:#000000;
+    height: 100%;
+    font-size: 16px;
+}
+
+.left-panel{
+    height:100%;
+    background-color: #ffffff;
+    color:#ec2227;
+    padding-left: 0px;
+    padding-right: 0px;
+    border-right: 3px solid #ec2227;
+}
+
+.kitchat-branding{
+    background-color: #ec2227;
+    color:#ffffff;
+    /*padding-left: 10px;
+    padding-right: 10px;*/
+    height: 70px;
+    /*padding-top: 15px;*/
+    padding:10px;
+}
+.kitchat-branding > .username{
+    font-size: 24px;
+}
+#kitchat-logo{
+    height: 50px;
+    display: inline-block;
+}
+
+.chat-room{
+    /*margin-left: 10px;*/
+    /*margin-right: 10px;*/
+    height:calc(100% - 70px);
+    overflow-y: scroll;
+}
+
+.chat-room .chat-room-label{
+    /*margin-left: 0px;*/
+    padding-left: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    z-index: 9999;
+}
+
+.chat-room-label-joined{
+    background-color: #31f41d;
+    color:#ffffff;
+}
+
+.chat-room-label-avaiable{
+    background-color: #6e2c13;
+    color:#ffffff;
+}
+.chat-room .chat-room-item{
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    border-bottom: 1px solid #ec2227;
+    color:#000000;
+    background-color: #ffffff;
+}
+.right-panel{
+    height:100%;
+    padding-left: 0px;
+    padding-right: 0px;
+}
+
+.right-panel .chat-message{
+    color:#000000;
+    padding-left: 10px;
+    padding-right: 10px;
+    height: 93%;
+    overflow-y: auto;
+}
+.right-panel .chat-input{
+    height: 7%;
+}
+
+.right-panel .chat-input input{
+    width: 100%;
+    height: 100%;
+    padding-left: 10px;
+    padding-right: 10px;
+}

@@ -19,6 +19,14 @@ app.get('/',function(req,res){
 app.get('/home',function(req,res){
 	res.render('home');
 })
+app.get('/login',function(req,res){
+	res.render('auth/login');
+})
+
+app.get('/chat',function(req,res){
+	res.render('chat-page');
+})
+
 var io = require('socket.io').listen(server);
 
 io.on('connection',function (socket) {
