@@ -17,7 +17,7 @@ html
         // ส่งข้อความ "Hello" ไปหา server ผ่านทางท่อชื่อ "chat"
         $('#chat-form').submit(function() {
             // ส่งข้อความที่พิมพ์มาไปยัง server ผ่านทางท่อชื่อ "chat"
-            socket.emit('chat', {name:"HyunFonG",message:$('#chat-message').val()});
+            socket.emit('chat', {name:"HyunFonG",message:$('#chat-message').val(),room:"GreenRoom"});
             return false;
         });
         socket.on('chat', function(message) {
