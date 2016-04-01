@@ -1,31 +1,37 @@
+// ---------------- Express Setup ------------------
+
 var express = require('express');
 var app = express();
 var path = require('path');
-var port = 8081;
-var ChatMessage = require('./model/ChatMessage');
 
+// ---------------- DB Connection ------------------
+
+var dbConfig = require('./db.js')
+var mongoose = require('mongoose');
+mongoose.connect(dbConfig.url);
+var ChatMessage = require('./model/ChatMessage.js');
+var User = require('./model/User.js')
+
+// ---------------- Listen Port ------------------
+
+var port = 8081;
 var server = app.listen(port,function(){
 	console.log('Listening on port: ' + port);
 });
+
+// ---------------- Socket IO ------------------
 
 app.set('views',path.join(__dirname, 'views'));
 app.set('view engine','jade');
 app.use(express.static('public'));
 
-app.get('/',function(req,res){
-	res.render('index');
-});
+// ---------------- Routes ------------------
 
-app.get('/home',function(req,res){
-	res.render('home');
-})
-app.get('/login',function(req,res){
-	res.render('auth/login');
-})
+var routes = require('./routes/routes');
+app.use('/',routes);
 
-app.get('/chat',function(req,res){
-	res.render('chat-page');
-})
+
+// ---------------- Socket IO ------------------
 
 var io = require('socket.io').listen(server);
 
