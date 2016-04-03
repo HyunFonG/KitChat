@@ -12,6 +12,9 @@ router.get('/home',function(req,res){
 router.get('/login',function(req,res){
 	res.render('auth/login');
 });
+router.get('/register',function(req,res){
+	res.render('auth/register');
+});
 
 router.get('/chat',function(req,res){
 	res.render('chat-page');
