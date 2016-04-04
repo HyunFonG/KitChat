@@ -1,8 +1,13 @@
 // ---------------- Express Setup ------------------
 
 var express = require('express');
-var app = express();
 var path = require('path');
+var favicon = require('serve-favicon');
+var logger = require('morgan');
+var cookieParser = require('cookie-parser');
+var bodyParser = require('body-parser');
+var flash = require('connect-flash');
+var app = express();
 
 // ---------------- DB Connection ------------------
 
@@ -10,7 +15,6 @@ var dbConfig = require('./db.js')
 var mongoose = require('mongoose');
 mongoose.connect(dbConfig.url);
 var ChatMessage = require('./model/ChatMessage.js');
-var User = require('./model/User.js')
 
 // ---------------- Listen Port ------------------
 
@@ -19,17 +23,30 @@ var server = app.listen(port,function(){
 	console.log('Listening on port: ' + port);
 });
 
-// ---------------- Socket IO ------------------
-
+// ---------------- Express Setting ------------------
+app.use(express.static('public'));
 app.set('views',path.join(__dirname, 'views'));
 app.set('view engine','jade');
-app.use(express.static('public'));
+app.use(favicon(__dirname + '/public/favicon.ico'));
+app.use(logger('dev'));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(cookieParser());
+app.use(flash());
+
+// ---------------- Config Passport ------------------
+
+var passport = require('passport');
+var expressSession = require('express-session');
+app.use(expressSession({secret: 'mySecretKey',resave: true,saveUninitialized: true}));
+app.use(passport.initialize());
+app.use(passport.session());
+var initPassport = require('./passport/init')(passport);
 
 // ---------------- Routes ------------------
 
-var routes = require('./routes/routes');
+var routes = require('./routes/routes')(passport);
 app.use('/',routes);
-
 
 // ---------------- Socket IO ------------------
 

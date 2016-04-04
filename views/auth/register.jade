@@ -14,12 +14,10 @@ html
             div.kitchat-branding.center-block
                 img(id="kitchat-logo" src="img/KitChat_Trans.png")
                 p.kitchat-slogan New user? Please register first.
-                form.login-form
+                form.login-form(method = "post", action = "/register")
                     div.row
-                        input(id="username",placeholder="Username",type="text")
+                        input(id="username",name="username",placeholder="Username",type="text")
                     div.row
-                        input(id="pwd",placeholder="Password",type="password")
-                    div.row
-                        input(id="pwd",placeholder="Reenter Password",type="password")
+                        input(id="pwd",name="password",placeholder="Password",type="password")
                     button(type="submit",class="btn btn-default").
                         Register
