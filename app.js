@@ -70,6 +70,6 @@ io.on('connection',function (socket) {
 
     socket.on('leave', function(data) {
         // ส่งข้อมูลการ leave room เข้ามา
-        
+
     });
 })
