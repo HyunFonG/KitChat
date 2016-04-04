@@ -1,0 +1,67 @@
+@import "./public/less/variables.less";
+
+html,body{
+    background-color: @main-theme;
+    width: 100%;
+    height: 100%;
+    display: table;
+    text-align: center;
+    color: @white;
+}
+
+.box{
+    display: table-cell;
+    vertical-align: middle;
+    p{
+        font-size: 30px;
+    }
+    .kitchat-slogan{
+        font-size: 24px;
+        font-weight: 200;
+    }
+    .login-form{
+        color: @black;
+        padding-top: 10px;
+    }
+}
+
+#kitchat-logo{
+    width: 21%;
+    margin-bottom: 10px;
+}
+input{
+    font-size: 16px;
+    width: 300px;
+    padding: 5px 10px 5px 10px;
+    margin-bottom: 10px;
+    border: none;
+    border-radius: 5px;
+    &:focus{
+        outline:0px !important;
+        -webkit-appearance:none;
+    }
+}
+
+.btn-default{
+    width: 300px;
+    background-color: @dark-chocolate;
+    color:@white;
+    border: none;
+    transition: all .35s;
+    -webkit-transition: all .35s;
+    -moz-transition: all .35s;
+    margin-bottom: 30px;
+    .nice-transition();
+    &:hover{
+        background-color: @white;
+        color: @black;
+    }
+}
+.register-link{
+    color:@white;
+    &:hover{
+        color:@yellow;
+        cursor: pointer;
+        text-decoration: none;
+    }
+}

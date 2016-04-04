@@ -1,0 +1,80 @@
+@import "./public/less/variables.less";
+
+html,body{
+    color:@black;
+    height: 100%;
+    font-size: 16px;
+}
+
+
+.left-panel{
+    height:100%;
+    background-color: @white;
+    color:#ec2227;
+    padding-left: 0px;
+    padding-right: 0px;
+    border-right: 3px solid @main-theme;
+}
+
+.kitchat-branding{
+    background-color: @main-theme;
+    color:@white;
+    height: 70px;
+    padding: 10px;
+    >.username{
+        font-size: 24px;
+    }
+}
+#kitchat-logo{
+    height: 50px;
+    display: inline-block;
+}
+.chat-room{
+    height: calc(100%-70px);
+    overflow-y: scroll;
+    .chat-room-label{
+        padding-left: 10px;
+        padding-top:10px;
+        padding-bottom: 10px;
+        z-index: 9999;
+    }
+    .chat-room-item{
+        padding-top: 10px;
+        padding-bottom: 10px;
+        padding-left: 10px;
+        border-bottom: 1px solid @main-theme;
+        color:@black;
+        background-color: @white;
+    }
+}
+.chat-room-label-joined{
+    background-color: #31f41d;
+    color:@white;
+}
+
+.chat-room-label-avaiable{
+    background-color: #6e2c13;
+    color:@white;
+}
+
+.right-panel{
+    height:100%;
+    padding-left: 0px;
+    padding-right: 0px;
+    .chat-message{
+        color:@black;
+        padding-left: 10px;
+        padding-right: 10px;
+        height: 93%;
+        overflow-y: auto;
+    }
+    .chat-input{
+        height: 7%;
+        input{
+            width: 100%;
+            height: 100%;
+            padding-left: 10px;
+            padding-right: 10px;
+        }
+    }
+}
