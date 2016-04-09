@@ -15,6 +15,7 @@ var dbConfig = require('./db.js')
 var mongoose = require('mongoose');
 mongoose.connect(dbConfig.url);
 var ChatMessage = require('./model/ChatMessage.js');
+var ChatMessage = require('./model/UserJoinedRoom.js');
 
 // ---------------- Listen Port ------------------
 
@@ -24,6 +25,7 @@ var server = app.listen(port,function(){
 });
 
 // ---------------- Express Setting ------------------
+
 app.use(express.static('public'));
 app.set('views',path.join(__dirname, 'views'));
 app.set('view engine','jade');
@@ -54,22 +56,30 @@ var io = require('socket.io').listen(server);
 
 io.on('connection',function (socket) {
 	// body...
-	socket.on('chat', function(data) {
+		socket.on('chat', function(data) {
         // แสดงข้อมูลที่ได้ ออกมาทาง console
         //console.log(message);
         var current_time = (new Date()).getTime();
-        ChatMessage({name: data.name, room: data.room, message: data.message, create_at : current_time }).save();
-        io.emit('chat', data.name + " said : " + data.message);
+        ChatMessage({username: data.username, room: data.room, message: data.message, create_at : current_time }).save();
+        io.sockets.in(data.room).emit('message', data.message);
 
-    });
+  	});
 
     socket.on('join', function(data) {
         // ส่งข้อมูลการ join room เข้ามา
-
+        var current_time = (new Date()).getTime();
+        UserJoinedRoom({username: data.username, room: data.room, joined_at: current_time}).save();
+        socket.join(data.room);
     });
 
-    socket.on('leave', function(data) {
+    socket.on('endchat', function(data) {
         // ส่งข้อมูลการ leave room เข้ามา
+        socket.leave(data.room);
+    });
 
+    socket.on('endchat', function(data) {
+        // ส่งข้อมูลการ leave room เข้ามา
+        UserJoinedRoom.find({username: data.username, room: data.room}).remove();
+        socket.leave(data.room);
     });
 })
