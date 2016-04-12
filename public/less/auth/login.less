@@ -15,9 +15,12 @@ html,body{
     p{
         font-size: 30px;
     }
-    .kitchat-slogan{
+    .welcoming-text{
         font-size: 24px;
         font-weight: 200;
+        @media(max-width: 768px){
+            font-size: 19px;
+        }
     }
     .login-form{
         color: @black;
@@ -28,18 +31,31 @@ html,body{
 #kitchat-logo{
     width: 21%;
     margin-bottom: 10px;
+    @media(max-width: 768px){
+        width: 60%;
+        margin-bottom: 0px;
+    }
 }
-input{
+
+input[id="username"],input[id="pwd"]{
     font-size: 16px;
     width: 300px;
-    padding: 5px 10px 5px 10px;
-    margin-bottom: 10px;
+    height:36px;
+    padding-left: 10px;
     border: none;
-    border-radius: 5px;
     &:focus{
         outline:0px !important;
         -webkit-appearance:none;
     }
+}
+input[id="username"]{
+    border-radius: 5px 5px 0px 0px;
+    border-bottom: 1px solid #C7C7CC;
+}
+
+input[id="pwd"]{
+    border-radius: 0px 0px 5px 5px;
+    margin-bottom: 10px;
 }
 
 .btn-default{
@@ -55,6 +71,9 @@ input{
     &:hover{
         background-color: @white;
         color: @black;
+    }
+    @media(max-width: 768px){
+
     }
 }
 .register-link{
