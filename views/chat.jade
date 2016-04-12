@@ -10,27 +10,32 @@ block content
     ul.nav.nav-pills.tab
         li
             img.web-branding(src="img/Kitchat_Trans.png")
-        li.active
+        li
             a(data-toggle="tab",href="#group")
                 i.material-icons supervisor_account
-        li
+        li.active
             a(data-toggle="tab",href="#chat")
                 i.material-icons chat
         li
             a(href="/logout")
                 i.material-icons exit_to_app
-    div.tab-content
-        div.col-sm-12.col-xs-12#group.tab-pane.fade.in.active
-        
+    div.tab-content.container
+        div.col-sm-12.col-xs-12#group.tab-pane.fade
             h1.heading Chat Group
             for group in grouplist
-                div.box.col-sm-2.col-xs-6
-                    div.group-circle.center-block h
-                    h3.group-name !{group.name}
-            for group in grouplist
-                div.box.col-sm-2.col-xs-6
-                    div.group-circle.center-block h
-                    h3.group-name !{group.name}
-        div.col-sm-12.col-xs-12#chat.tab-pane.fade
-            each val in [1,2,3,4,5,6,7,8,9,10]
-                h1.heading CHAT
+                div.chat-group.col-sm-3.col-xs-12
+                    div.box
+                        div.group-circle.center-block !{JSON.stringify(group.name).substr(1,2)}
+                        h3.group-name !{(group.name).substr(0,30)+'...'}
+        div.col-sm-12.col-xs-12#chat.tab-pane.fade.in.active
+            h1.heading Message
+            each val in [1,2,3,4]
+                div.chat-item.col-sm-6.col-xs-12
+                    div.chat-box.col-sm-12.col-xs-12
+                        div.noti-count 33
+                        div.col-sm-3.col-xs-3.group-circle HA
+                        div.col-sm-9.col-xs-9.group-name
+                            div.row.chat-group-name WTF
+                            div.row.chat-group-latest-msg เฮ้ยมึง...
+                
+                
