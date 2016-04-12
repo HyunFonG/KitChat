@@ -40,6 +40,7 @@ module.exports = function (passport) {
 
 	router.get('/chat',isAuthenticated,function(req,res){
 		var grouplist = Group.find({}).select({name:1,_id:0}).exec(function(err,group){
+			console.log(group)
 			res.render('chat-page',{grouplist : group});
 		})
 	});
@@ -54,15 +55,15 @@ module.exports = function (passport) {
 		Group.findOne({ 'name' :  req.query.name }, function(err, user) {
 				// In case of any error, return using the done method
 				if (err){
-						console.log('Error in SignUp: '+err);
-						return done(err);
+					console.log('Error in SignUp: '+err);
+					return done(err);
 				}
 				// already exists
 				if (user) {
-						console.log('Group already exists');
-						return done(null, false, req.flash('message','Group Already Exists'));
+					console.log('Group already exists');
+					return done(null, false, req.flash('message','Group Already Exists'));
 				} else {
-						Group({name : req.query.name}).save();
+					Group({name : req.query.name}).save();
 
 				}
 		});
