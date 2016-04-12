@@ -10,24 +10,26 @@ block content
     ul.nav.nav-pills.tab
         li
             img.web-branding(src="img/Kitchat_Trans.png")
-        li
+        li.active
             a(data-toggle="tab",href="#group")
                 i.material-icons supervisor_account
-        li.active
+        li
             a(data-toggle="tab",href="#chat")
                 i.material-icons chat
         li
             a(href="/logout")
                 i.material-icons exit_to_app
     div.tab-content.container
-        div.col-sm-12.col-xs-12#group.tab-pane.fade
+        div.col-sm-12.col-xs-12#group.tab-pane.fade.in.active
             h1.heading Chat Group
+            div#fab-add-group
+                a +
             for group in grouplist
                 div.chat-group.col-sm-3.col-xs-12
                     div.box
                         div.group-circle.center-block !{JSON.stringify(group.name).substr(1,2)}
                         h3.group-name !{(group.name).substr(0,30)+'...'}
-        div.col-sm-12.col-xs-12#chat.tab-pane.fade.in.active
+        div.col-sm-12.col-xs-12#chat.tab-pane.fade
             h1.heading Message
             each val in [1,2,3,4]
                 div.chat-item.col-sm-6.col-xs-12
