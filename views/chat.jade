@@ -1,0 +1,27 @@
+extends ./layout.jade
+
+block title
+    title Let's Talking! - KitChat
+
+block css
+    link(rel='stylesheet',href='css/chat.css')
+
+block content
+    ul.nav.nav-pills.tab
+        li
+            img.web-branding(src="img/Kitchat_Trans.png")
+        li.active
+            a(data-toggle="tab",href="#group")
+                i.material-icons supervisor_account
+        li
+            a(data-toggle="tab",href="#chat")
+                i.material-icons chat
+        li
+            a(href="#")
+                i.material-icons supervisor_account
+    div.col-sm-12.col-xs-12
+        div.tab-content
+            div#group.tab-pane.fade
+                h1 GROUP
+            div#chat.tab-pane.fade
+                h1 CHAT

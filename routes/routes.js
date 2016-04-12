@@ -41,7 +41,7 @@ module.exports = function (passport) {
 	router.get('/chat',isAuthenticated,function(req,res){
 		var grouplist = Group.find({}).select({name:1,_id:0}).exec(function(err,group){
 			console.log(group)
-			res.render('chat-page',{grouplist : group});
+			res.render('chat',{grouplist : group});
 		})
 	});
 
