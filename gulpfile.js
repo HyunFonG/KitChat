@@ -25,4 +25,5 @@ gulp.task('default', ['less','browser-sync'], function() {
     gulp.watch(['./views/*.jade'], browserSync.reload);
     gulp.watch(['./public/css/**/*.css'], browserSync.reload);
     gulp.watch("./public/less/**/*.less", ['less']);
+    gulp.watch("./public/less/*.less", ['less']);
 });

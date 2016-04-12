@@ -9,3 +9,27 @@
     -webkit-transition: all .35s;
     -moz-transition: all .35s;
 }
+
+.circle-icon(@background-color,@font-color,@size){
+    width:@size;
+    height:@size;
+    border-radius: 100%;
+    -webkit-border-radius: 100%;
+    -moz-border-radius:100%;
+    border: none;
+    font-size: @size*0.5;
+    line-height: @size;
+    color:@font-color;
+    background-color: @background-color;
+    text-align: center;
+    // box-shadow: 0 3px 10px rgba(0,0,0,0.23),0 3px 10px rgba(0,0,0,0.16);
+    @media(max-width: 768px){
+        width: @size*0.65;
+        height: @size*0.65;
+        line-height: @size*0.65;
+        font-size: @size*0.65/2;
+    }
+    // &:hover{
+    //     background-color: darken(@background-color, 2%);
+    // }
+}

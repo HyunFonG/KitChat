@@ -17,11 +17,20 @@ block content
             a(data-toggle="tab",href="#chat")
                 i.material-icons chat
         li
-            a(href="#")
-                i.material-icons supervisor_account
-    div.col-sm-12.col-xs-12
-        div.tab-content
-            div#group.tab-pane.fade
-                h1 GROUP
-            div#chat.tab-pane.fade
-                h1 CHAT
+            a(href="/logout")
+                i.material-icons exit_to_app
+    div.tab-content
+        div.col-sm-12.col-xs-12#group.tab-pane.fade.in.active
+        
+            h1.heading Chat Group
+            for group in grouplist
+                div.box.col-sm-2.col-xs-6
+                    div.group-circle.center-block h
+                    h3.group-name !{group.name}
+            for group in grouplist
+                div.box.col-sm-2.col-xs-6
+                    div.group-circle.center-block h
+                    h3.group-name !{group.name}
+        div.col-sm-12.col-xs-12#chat.tab-pane.fade
+            each val in [1,2,3,4,5,6,7,8,9,10]
+                h1.heading CHAT
