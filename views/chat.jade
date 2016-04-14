@@ -39,7 +39,7 @@ block content
                         div.col-sm-9.col-xs-9.group-name
                             div.row.chat-group-name WTF
                             div.row.chat-group-latest-msg เฮ้ยมึง...
-                
+
     div#add-group-modal.modal.fade(tabindex="-1",role="dialog")
         div.modal-dialog
             div.modal-content
@@ -48,12 +48,11 @@ block content
                         span(aria-hidden="true").
                             &times;
                     h4.modal-title Create Group
-                form(method='get',action='/createGroup')
+                form(method='post',action='/createGroup')
                     div.modal-body
-                        input(class="form-control",id="name",name="name",placeholder="name",type="text")
+                        input(class="form-control",id="name",name="groupname",placeholder="name",type="text")
                     div.modal-fotter
                         button(type="button",class="btn btn-default",data-dismiss="modal").
                             Close
                         button(type="submit",class="btn btn-default").
                             Create Group
-                    

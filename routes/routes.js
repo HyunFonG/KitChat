@@ -50,9 +50,8 @@ module.exports = function (passport) {
 		res.redirect('/login');
 	});
 
-	router.get('/createGroup',function(req,res){
-		console.log(req.query.name);
-		Group.findOne({ 'name' :  req.query.name }, function(err, user) {
+	router.post('/createGroup',function(req,res){
+		Group.findOne({ 'name' :  req.body.groupname }, function(err, user) {
 				// In case of any error, return using the done method
 				if (err){
 					console.log('Error in SignUp: '+err);
@@ -63,8 +62,8 @@ module.exports = function (passport) {
 					console.log('Group already exists');
 					return done(null, false, req.flash('message','Group Already Exists'));
 				} else {
-					Group({name : req.query.name}).save();
-
+					Group({name : req.body.groupname}).save();
+					res.redirect('/chat');
 				}
 		});
 	});
