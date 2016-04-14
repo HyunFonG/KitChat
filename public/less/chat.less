@@ -15,7 +15,7 @@ html,body{
             height:50px;
             @media(max-width: 768px){
                 padding-right: 5px;
-                height:48px;
+                height:41px;
             }
         }
         >a{
@@ -26,7 +26,7 @@ html,body{
             .material-icons{
                 font-size: 41px;
                 @media(max-width: 768px){
-                    font-size: 35px;
+                    font-size: 26px;
                 }
             }
             .tab-label{
@@ -49,11 +49,23 @@ html,body{
 .tab-content{
     overflow-y: scroll;
     height:calc(100%-10px);
+    @media(max-width: 768px){
+        padding-left: 0px;
+        padding-right: 0px;
+    }
+    .tab-pane{
+        padding-left: 0px;
+        padding-right: 0px;
+    }
 }
 
 .heading{
     text-align: center;
     margin-bottom: 20px;
+    @media(max-width: 768px){
+        font-size: 22px;
+
+    }
 }
 #group{
     #fab-add-group {
@@ -84,6 +96,12 @@ html,body{
             text-decoration: none;
             background-color: #a62020;
             transform: scale(1.2);
+        }
+        @media(max-width: 768px){
+            width: 40px;
+            height:40px;
+            font-size:30px;
+            line-height: 35px;
         }
     }
     .chat-group{
