@@ -45,12 +45,23 @@ module.exports = function (passport) {
 		})
 	});
 
+	router.get('/api/group',isAuthenticated,function(req,res){
+		var grouplist = Group.find({}).select({name:1,_id:0}).exec(function(err,group){
+			console.log(group)
+			console.log("Hello");
+			res.json({grouplist:group});
+		})
+	});
+
 	router.get('/logout',function(req,res){
 		req.logout();
 		res.redirect('/login');
 	});
 
 	router.post('/createGroup',function(req,res){
+		console.log("DEBUG");
+		console.log(req.body.groupname);
+		console.log("END DEBUG");
 		Group.findOne({ 'name' :  req.body.groupname }, function(err, user) {
 				// In case of any error, return using the done method
 				if (err){

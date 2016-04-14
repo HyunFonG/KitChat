@@ -20,15 +20,17 @@ block content
             a(href="/logout")
                 i.material-icons exit_to_app
     div.tab-content.container
-        div.col-sm-12.col-xs-12#group.tab-pane.fade.in.active
+        div.col-sm-12.col-xs-12#group.tab-pane.fade.in.active(ng-controller="groupListCtrl")
             h1.heading Chat Group
             div#fab-add-group(data-toggle="modal",data-target="#add-group-modal")
                 a +
-            for group in grouplist
-                div.chat-group.col-sm-3.col-xs-6
-                    div.box
-                        div.group-circle.center-block !{JSON.stringify(group.name).substr(1,2)}
-                        h3.group-name !{(group.name).substr(0,10)+'...'}
+            //- for group in grouplist
+            div.chat-group.col-sm-3.col-xs-6(ng-repeat="group in groups")
+                div.box
+                    div.group-circle.center-block {{twoLetterGroupName(group.name)}}
+                    h3.group-name {{groupnameToDisplay(group.name)}}
+                    //- div.group-circle.center-block !{JSON.stringify(group.name).substr(1,2)}
+                    //- h3.group-name !{(group.name).substr(0,10)+'...'}
         div.col-sm-12.col-xs-12#chat.tab-pane.fade
             h1.heading Message
             each val in [1,2,3,4]
@@ -40,7 +42,7 @@ block content
                             div.row.chat-group-name WTF
                             div.row.chat-group-latest-msg เฮ้ยมึง...
 
-    div#add-group-modal.modal.fade(tabindex="-1",role="dialog")
+    div#add-group-modal.modal.fade(tabindex="-1",role="dialog",ng-controller="addGroupCtrl",add-modal)
         div.modal-dialog
             div.modal-content
                 div.modal-header
@@ -48,11 +50,15 @@ block content
                         span(aria-hidden="true").
                             &times;
                     h4.modal-title Create Group
-                form(method='post',action='/createGroup')
-                    div.modal-body
-                        input(class="form-control",id="name",name="groupname",placeholder="name",type="text")
-                    div.modal-fotter
-                        button(type="button",class="btn btn-default",data-dismiss="modal").
-                            Close
-                        button(type="submit",class="btn btn-default").
-                            Create Group
+                //- form
+                div.modal-body
+                    input(ng-model="groupname",placeholder="name",type="text")
+                div.modal-fotter
+                    button(type="button",class="btn btn-default",data-dismiss="modal").
+                        Close
+                    button(ng-click="sendPost()",class="btn btn-default").
+                        Create Group
+
+block js
+    script(src="angular/chat.js")
+    
