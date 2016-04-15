@@ -1,5 +1,6 @@
 var express = require('express');
 var Group = require('../model/Group');
+var UserJoinedGroup = require('../model/UserJoinedGroup');
 var router = express.Router();
 
 var isAuthenticated = function (req, res, next) {
@@ -39,18 +40,25 @@ module.exports = function (passport) {
 		}));
 
 	router.get('/chat',isAuthenticated,function(req,res){
-		var grouplist = Group.find({}).select({name:1,_id:0}).exec(function(err,group){
-			console.log(group)
-			res.render('chat',{grouplist : group});
-		})
+		/*Group.find({}).select({name:1,_id:0}).exec(function(err,group){
+			UserJoinedGroup.find({username : req.user.username}).select({group:1,username:0,joined_at:0,_id:0}).exec(function(err,joinedgroup){
+				console.log(joinedgroup);
+				res.render('chat',{grouplist : group});
+			});
+		});*/
+		res.render('chat');
 	});
 
 	router.get('/api/group',isAuthenticated,function(req,res){
-		var grouplist = Group.find({}).select({name:1,_id:0}).exec(function(err,group){
-			console.log(group)
-			console.log("Hello");
-			res.json({grouplist:group});
-		})
+		Group.find({},function(err,group){
+			UserJoinedGroup.find({},function(err,joinedgroup){
+				if(err) console.log(err);
+				console.log(req.user.username);
+				console.log(joinedgroup);
+				console.log(group);
+				res.json({grouplist : group});
+			});
+		});
 	});
 
 	router.get('/logout',function(req,res){

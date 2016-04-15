@@ -15,7 +15,7 @@ var dbConfig = require('./db.js')
 var mongoose = require('mongoose');
 mongoose.connect(dbConfig.url);
 var ChatMessage = require('./model/ChatMessage.js');
-var ChatMessage = require('./model/UserJoinedRoom.js');
+var UserJoinedGroup = require('./model/UserJoinedGroup.js');
 
 // ---------------- Listen Port ------------------
 
