@@ -5,8 +5,8 @@ var Schema = mongoose.Schema;
 var user_joined_group = new Schema({
 	username : String,
 	group : String,
-	joined_at : Date
-});
+	leave_at : Date
+},{ collection: 'user_joined_group' });
 
 var UserJoinedGroup = mongoose.model('UserJoinedRoom',user_joined_group);
 

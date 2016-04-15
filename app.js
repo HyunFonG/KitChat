@@ -15,7 +15,6 @@ var dbConfig = require('./db.js')
 var mongoose = require('mongoose');
 mongoose.connect(dbConfig.url);
 var ChatMessage = require('./model/ChatMessage.js');
-var UserJoinedGroup = require('./model/UserJoinedGroup.js');
 
 // ---------------- Listen Port ------------------
 
@@ -64,22 +63,4 @@ io.on('connection',function (socket) {
         io.sockets.in(data.room).emit('message', data.message);
 
   	});
-
-    socket.on('join', function(data) {
-        // ส่งข้อมูลการ join room เข้ามา
-        var current_time = (new Date()).getTime();
-        UserJoinedRoom({username: data.username, room: data.room, joined_at: current_time}).save();
-        socket.join(data.room);
-    });
-
-    socket.on('endchat', function(data) {
-        // ส่งข้อมูลการ leave room เข้ามา
-        socket.leave(data.room);
-    });
-
-    socket.on('endchat', function(data) {
-        // ส่งข้อมูลการ leave room เข้ามา
-        UserJoinedRoom.find({username: data.username, room: data.room}).remove();
-        socket.leave(data.room);
-    });
 })

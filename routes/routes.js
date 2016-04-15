@@ -51,14 +51,31 @@ module.exports = function (passport) {
 
 	router.get('/api/group',isAuthenticated,function(req,res){
 		Group.find({},function(err,group){
-			UserJoinedGroup.find({},function(err,joinedgroup){
-				if(err) console.log(err);
-				console.log(req.user.username);
+			console.log('-------------');
+			UserJoinedGroup.find({'username':req.user.username},function(err,joinedgroup){
+				var joined_group = [];
+				var unjoinedgroup = [];
+				for(var i = 0;i < joinedgroup.length;i++){
+					joined_group.push(joinedgroup[i].group);
+				}
+				for(var i = 0;i < group.length;i++){
+					if(joined_group.indexOf(group[i].name) == -1){
+						unjoinedgroup.push(group[i]);
+					}
+				}
+				console.log('--- unjoinedgroup');
+				console.log(unjoinedgroup);
+				console.log('--- joinedgroup');
 				console.log(joinedgroup);
-				console.log(group);
-				res.json({grouplist : group});
+				res.json({'unjoinedgroup':unjoinedgroup,'joinedgroup':joinedgroup});
 			});
 		});
+	});
+
+	router.get('/test',function(req,res) {
+		var current_time = (new Date()).getTime();
+		UserJoinedGroup({username:req.query.name,group:req.query.group,'leave_at':current_time}).save();
+		res.send('OK');
 	});
 
 	router.get('/logout',function(req,res){
