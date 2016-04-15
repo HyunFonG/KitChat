@@ -104,5 +104,11 @@ module.exports = function (passport) {
 		});
 	});
 
+	router.post('/joininggroup',isAuthenticated,function(req,res){
+		var current_time = (new Date()).getTime();
+		UserJoinedGroup({username:req.user.username,group:req.body.group,'leave_at':current_time}).save();
+		res.redirect('/chat');
+	});
+
 	return router;
 }
