@@ -25,22 +25,23 @@ block content
             div#fab-add-group(data-toggle="modal",data-target="#add-group-modal")
                 a +
             //- for group in grouplist
-            div.chat-group.col-sm-3.col-xs-6(ng-repeat="group in groups")
-                div.box
-                    div.group-circle.center-block {{twoLetterGroupName(group.name)}}
-                    h3.group-name {{groupnameToDisplay(group.name)}}
+            div.chat-group.col-sm-3.col-xs-6(ng-repeat="group in unjoinedgroups")
+                div.box(ng-click="joinGroup(group.name)")
+                    div.group-circle.center-block
+                        span(ng-bind="twoLetterGroupName(group.name)")
+                    h3.group-name 
+                        span(ng-bind="groupnameToDisplay(group.name)")
                     //- div.group-circle.center-block !{JSON.stringify(group.name).substr(1,2)}
                     //- h3.group-name !{(group.name).substr(0,10)+'...'}
-        div.col-sm-12.col-xs-12#chat.tab-pane.fade
+        div.col-sm-12.col-xs-12#chat.tab-pane.fade(ng-controller="messageListCtrl")
             h1.heading Message
-            each val in [1,2,3,4]
-                div.chat-item.col-sm-6.col-xs-12
-                    div.chat-box.col-sm-12.col-xs-12
-                        div.noti-count 33
-                        div.col-sm-3.col-xs-3.group-circle HA
-                        div.col-sm-9.col-xs-9.group-name
-                            div.row.chat-group-name WTF
-                            div.row.chat-group-latest-msg เฮ้ยมึง...
+            //- each val in [1,2,3,4]
+            div.chat-item.col-sm-6.col-xs-12(ng-repeat="msg in joinedgroups")
+                div.chat-box.col-sm-12.col-xs-12
+                    div.col-sm-3.col-xs-3.group-circle {{twoLetterGroupName(msg.name)}}
+                    div.col-sm-9.col-xs-9.group-name
+                        div.row.chat-group-name {{msg.name}}
+                        div.row.chat-group-latest-msg รอหลังบ้านอยู่นะแจ๊ะ...
 
     div#add-group-modal.modal.fade(tabindex="-1",role="dialog",ng-controller="addGroupCtrl",add-modal)
         div.modal-dialog
@@ -59,7 +60,7 @@ block content
                 div.modal-footer
                     button(type="button",class="btn btn-default",data-dismiss="modal").
                         Close
-                    button(ng-click="sendPost()",class="btn btn-default").
+                    button(ng-click="createGroup()",class="btn btn-default").
                         Create Group
 
 block js
