@@ -26,7 +26,7 @@ block content
                 a +
             //- for group in grouplist
             div.chat-group.col-sm-3.col-xs-6(ng-repeat="group in unjoinedgroups")
-                div.box(ng-click="joinGroup()")
+                div.box(ng-click="joinGroup(group.name)")
                     div.group-circle.center-block
                         span(ng-bind="twoLetterGroupName(group.name)")
                     h3.group-name 

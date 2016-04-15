@@ -36,8 +36,9 @@ chat.controller('groupListCtrl',function($scope,$rootScope,$http){
         return group.substring(0,10) + "...";
     }
 
-    $scope.joinGroup = function(){
-        console.log("HEHE")
+    $scope.joinGroup = function(groupname){
+        console.log(groupname);
+        //TODO POST TO ROUTE
     }
 
 });
