@@ -16,7 +16,7 @@ chat.controller('addGroupCtrl',function($scope,$rootScope,$http){
         $http.post("/createGroup", {groupname:$scope.groupname})
         .success(function(data, status) {
             console.log($rootScope.groups);
-            $rootScope.groups.push({"name":$scope.groupname});
+            $rootScope.unjoinedgroups.push({"name":$scope.groupname});
             $scope.dismiss();
         });
     }
@@ -29,16 +29,20 @@ chat.controller('groupListCtrl',function($scope,$rootScope,$http){
         $rootScope.joinedgroups = data['joinedgroup'];
     });
 
-    $rootScope.twoLetterGroupName = function(group){
+    $scope.twoLetterGroupName = function(group){
         return group.substring(0,2);
     }
     $scope.groupnameToDisplay = function(group){
-        return group.substring(0,10) + "...";
+        return group.substring(0,10);
     }
 
     $scope.joinGroup = function(groupname){
         console.log(groupname);
         //TODO POST TO ROUTE
+        $http.post("/joininggroup",{group:groupname})
+        .success(function(data,status){
+            console.log("WE DID IT YEAH");
+        });
     }
 
 });
