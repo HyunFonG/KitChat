@@ -1,4 +1,4 @@
-var chat = angular.module('chat',[]);
+var chat = angular.module('chat',['ngRoute']);
 
 chat.directive('addModal',function(){
     return {
@@ -10,6 +10,29 @@ chat.directive('addModal',function(){
         }
     }
 });
+
+chat.config(['$routeProvider', '$locationProvider',function($routeProvider, $locationProvider) {
+    $routeProvider.
+    when('/list', {
+        templateUrl: 'partials/chat-list',
+        controller: 'testCtrl'
+    }).
+    when('/room', {
+        templateUrl: 'partials/chat-room',
+        controller: 'testCtrl'
+    }).
+    otherwise({
+        redirectTo: '/chat'
+    });
+    // $locationProvider.html5Mode(true);
+}]);
+
+chat.controller('testCtrl',function($scope){
+    $scope.chatList = "chat list";
+    $scope.chatRoom = "chat room";
+
+});
+
 chat.controller('addGroupCtrl',function($scope,$rootScope,$http){
     $scope.createGroup = function(){
         console.log("HELLO");
