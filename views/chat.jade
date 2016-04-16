@@ -19,6 +19,9 @@ block content
         li.active
             a(data-toggle="tab",href="#test") test
         li
+            a(data-toggle="tab",href="#chat-page")
+               i.material-icons question_answer
+        li
             a(href="/logout")
                 i.material-icons exit_to_app
     div.tab-content.container
@@ -51,6 +54,21 @@ block content
             a(href="#/list") List
             a(href="#/room") Room
             div(ng-view)
+
+        div.col-sm-12.col-xs-12#chat-page.tab-pane.fade()
+            h3.heading Chat page
+            div.container(width:100%;)
+                div.chat-zone.col-xs-12.col-sm-12
+                    img.frd-pic.img-rounded.center-block(src="img/test.png")
+                    p.friend-name ปลายุด
+                    div.talk-zone(width:100%;)
+                        img.img-rounded.in-chat.frd-pic(src="img/test.png")
+                        div.balloon-talk.talk-bubble.tri-right.left-top
+                            p.frd-con ไร่ส้มเป็นไงบ้างล่ะ ห้ะ
+
+
+
+
 
     div#add-group-modal.modal.fade(tabindex="-1",role="dialog",ng-controller="addGroupCtrl",add-modal)
         div.modal-dialog

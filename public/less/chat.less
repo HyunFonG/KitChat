@@ -342,3 +342,99 @@ html,body{
 
     }
 }
+#chat-page{
+  .chat-zone{
+    width:100%;
+    //back-ground-color:@dark-chocolate;
+
+  }
+  .frd-pic{
+    width:7%;
+    height:7%;
+    border-radius: 100%;
+  }
+  .in-chat{
+    width:10%;
+    height:10%;
+    border-radius: 100%;
+  }
+  #chat-line{
+    width:80%;
+    color: @dark-chocolate;
+  }
+  .friend-name{
+    font-size: 20px;
+    color: @dark-chocolate;
+    text-align: center;
+    font-weight: 700;
+  }
+  @media (max-width:768px){
+    .frd-pic{
+      width:20%;
+      float:left;
+      visibility: hidden;
+    }
+
+    #chat-line{
+      display: none;
+    }
+    .friend-name{
+      font-size: 17px;
+      float: left;
+      padding-left: 15px;
+      padding-top: 15px;
+    }
+  }
+  .talk-zone{
+    height:100%;
+    //border:5px solid @dark-chocolate;
+  }
+  .balloon-talk{
+    width:25%;
+    color:@white;
+    background-color: @dark-chocolate;
+    font-size: 20px;
+    position: relative;
+    margin-top: 10px;
+    margin-left: 10px;
+    text-align: center;
+    border-radius: 10px;
+    padding-top: 10px;
+    padding-bottom:8px;
+  }
+  .self-talk{
+    //left:70%;
+  }
+  .talk-bubble {
+    margin: 40px;
+    display: inline-block;
+    position: relative;
+    width: 200px;
+    height: auto;
+    background-color: @dark-chocolate;
+  }
+  .tri-right.border.left-top:before {
+    content: ' ';
+    position: absolute;
+    width: 0;
+    height: 0;
+    left: -40px;
+    right: auto;
+    top: -8px;
+    bottom: auto;
+    border: 32px solid;
+    border-color: #666 transparent transparent transparent;
+  }
+  .tri-right.left-top:after{
+    content: ' ';
+    position: absolute;
+    width: 0;
+    height: 0;
+    left: -20px;
+    right: auto;
+    top: 0px;
+    bottom: auto;
+    border: 22px solid;
+    border-color: @dark-chocolate transparent transparent transparent;
+  }
+}
