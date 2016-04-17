@@ -59,13 +59,22 @@ block content
             h3.heading Chat page
             div.container(width:100%;)
                 div.chat-zone.col-xs-12.col-sm-12
-                    img.frd-pic.img-rounded.center-block(src="img/test.png")
-                    p.friend-name ปลายุด
+                    div.row
+                      img.frd-pic.img-rounded.center-block(src="img/test.png")
+                      p.friend-name ปลายุด
                     div.talk-zone(width:100%;)
-                        img.img-rounded.in-chat.frd-pic(src="img/test.png")
-                        div.balloon-talk.talk-bubble.tri-right.left-top
-                            p.frd-con ไร่ส้มเป็นไงบ้างล่ะ ห้ะ
-
+                      each val in [1,2,3]
+                        div.row(margin-bottom:1em;)
+                          img.img-rounded.in-chat(src="img/test.png")
+                          div.balloon-talk.talk-bubble.tri-right.left-top.friend-balloon
+                              p.frd-con ไร่ส้มเป็นไงบ้างล่ะ ห้ะ
+                        div.row
+                          div.balloon-talk.talk-bubble.tri-right.round.right-top.self-balloon    
+                              p.self-con ยังอยู่ในคุกฮะทั่น
+                    div.chat-zone
+                      input(placeholder="Name",type="text")
+                      span.bar
+                      button.btn.send-btn Send    
 
 
 
