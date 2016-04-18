@@ -349,109 +349,185 @@ html,body{
 
     }
 }
-#chat-page{
-    .frd-div{
-        width:100%;
-        border-bottom: 2px solid @dark-chocolate;
-    }
-    .back-arrow{
-        width:3%;
-        @media(max-width:768px){
-            width:10%;
-        }
-    }
-    .frd-pic{
-        width:5%;
-        border-radius: 100%;
-        left:50%;
-        @media(max-width:768px){
-            width:15%;
-        }
-    }
-    .frd-name{
-        font-size: 17px;
-        font-weight: 700;
+// #chat-page{
+//     .frd-div{
+//         width:100%;
+//         border-bottom: 2px solid @dark-chocolate;
+//     }
+//     .back-arrow{
+//         width:3%;
+//         @media(max-width:768px){
+//             width:10%;
+//         }
+//     }
+//     .frd-pic{
+//         width:5%;
+//         border-radius: 100%;
+//         left:50%;
+//         @media(max-width:768px){
+//             width:15%;
+//         }
+//     }
+//     .frd-name{
+//         font-size: 17px;
+//         font-weight: 700;
+//         text-align: center;
+//         color:@dark-chocolate;
+//         @media(max-width:768px){
+//             font-size: 14px;
+//         }
+//     }
+//     .chat-div{
+//         width:100%;
+//         border-bottom: 2px solid @dark-chocolate;
+//         padding-bottom: 10px;
+//         &::-webkit-scrollbar{
+//             display: none;
+//         }
+//     }
+//     .scrollable{
+//         height: 370px; /* or any value */
+//         overflow-y: auto;
+//         // overflow-x: auto;
+//     }
+//     .frd-chat-pic{
+//         width:5%;
+//         border-radius: 100%;
+//         margin-top: 1.5em;
+//         margin-left: 15px;
+//         @media(max-width: 768px){
+//             width:12%;
+//         }
+//     }
+//     .frd-balloon,.self-balloon{
+//         width:200px;
+//         color:white;
+//         background-color: @dark-chocolate;
+//         font-size: 17px;
+//         border-radius: 10px;
+//         padding: 5px;
+//         margin-top: 1em;
+//         position: relative;
+//         // margin-bottom: 1em;
+//         // bottom:50px;
+//         @media(max-width: 768){
+//             font-size: 12px;
+//             width:170px;
+//         }
+//     }
+//     .frd-balloon{
+//      left:7%;
+//      bottom: 75px;
+//      @media(max-width: 768px){
+//          left:18%;
+//      }
+//     }
+//     .self-balloon{
+//         position: relative;
+//         left: 80%;
+//         @media(max-width:768px){
+//             left:40%;
+//         }
+//     }
+//     .type-div{
+//         width: 100%;
+//         margin-top: 1em;
+//         // position: fixed;
+//         // top:87%;
+//         @media(max-width: 768px){
+//             top:90%;
+//         }
+//         input{
+//             width: 80%;
+//             @media(max-width:768px){
+//                 width:70%;
+//                 // top:70%;
+//             }
+//         }
+//         .send-btn{
+//             color: @dark-chocolate;
+//             background-color: @white;
+//             border: 1px solid @dark-chocolate;
+//             padding-top: 1px;
+//             padding-bottom: 1px;
+//             margin-left: 1em;
+//         }
+//     }
+//
+// }
+#chat-room{
+    margin-top: 16px;
+    border: 3px solid @dark-chocolate;
+    height: 87vh;
+    .chat-room-title{
+        display: block;
+        padding-top: 19px;
+        padding-bottom: 19px;
         text-align: center;
-        color:@dark-chocolate;
-        @media(max-width:768px){
-            font-size: 14px;
-        }
-    }
-    .chat-div{
-        width:100%;
-        border-bottom: 2px solid @dark-chocolate;
-        padding-bottom: 10px;
-        &::-webkit-scrollbar{
-            display: none;
-        }
-    }
-    .scrollable{
-        height: 370px; /* or any value */
-        overflow-y: auto;
-        // overflow-x: auto;
-    }
-    .frd-chat-pic{
-        width:5%;
-        border-radius: 100%;
-        margin-top: 1.5em;
-        margin-left: 15px;
-        @media(max-width: 768px){
-            width:12%;
-        }
-    }
-    .frd-balloon,.self-balloon{
-        width:200px;
-        color:white;
         background-color: @dark-chocolate;
-        font-size: 17px;
-        border-radius: 10px;
-        padding: 5px;
-        margin-top: 1em;
-        position: relative;
-        // margin-bottom: 1em;
-        // bottom:50px;
-        @media(max-width: 768){
-            font-size: 12px;
-            width:170px;
-        }
-    }
-    .frd-balloon{
-     left:7%;
-     bottom: 75px;
-     @media(max-width: 768px){
-         left:18%;
-     }
-    }
-    .self-balloon{
-        position: relative;
-        left: 80%;
-        @media(max-width:768px){
-            left:40%;
-        }
-    }
-    .type-div{
-        width: 100%;
-        margin-top: 1em;
-        // position: fixed;
-        // top:87%;
-        @media(max-width: 768px){
-            top:90%;
-        }
-        input{
-            width: 80%;
-            @media(max-width:768px){
-                width:70%;
-                // top:70%;
+        color:@white;
+        // height: 95px;;
+        .back-btn{
+            position: absolute;
+            font-size: 23px;
+            top:8%;
+            left: 2%;
+            @media(max-width: 768px){
+                font-size: 14px;
+                top:8%;
             }
         }
-        .send-btn{
-            color: @dark-chocolate;
-            background-color: @white;
-            border: 1px solid @dark-chocolate;
-            padding-top: 1px;
-            padding-bottom: 1px;
-            margin-left: 1em;
+        .room-name-circle{
+            text-transform: uppercase;
+            text-align: center;
+            border-radius: 50%;
+            width: 80px;
+            height: 80px;
+            padding: 12px;
+            background: @white;
+            border: none;
+            color: @black;
+            font-size:40px;
+            @media(max-width: 768px){
+                width: 20px;
+                height: 20px;
+                padding:7px;
+                font-size: 15px;
+            }
+        }
+        .room-name{
+            font-size: 32px;
+            @media(max-width: 768px){
+                font-size: 19px;
+            }
         }
     }
-
+    .chat-room-message{
+        // height:50vh;
+        height:calc(75vh-7px);
+        overflow-y: scroll;
+        .message-leftzone{
+            .message-left{
+                background-color: @material-gray;
+                width: 250px;
+                border-radius: 5px;
+                font-size: 17px;
+                color: @black;
+                padding: 8px;
+            }
+        }
+        .message-rightzone{
+            float: right;
+            .message-right{
+                text-align: right;
+                background-color: @dark-chocolate;
+                width: 250px;
+                // margin-left: 250px;
+                border-radius: 5px;
+                font-size: 17px;
+                color: @white;
+                padding: 8px;
+            }
+        }
+    }
 }
