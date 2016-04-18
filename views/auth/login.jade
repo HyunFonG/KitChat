@@ -7,10 +7,15 @@ block css
     link(rel='stylesheet',href='css/auth/login.css')
     
 block content
+    - var loginResponse = {message}
+    
     div.box
         div.kitchat-branding.center-block
             img(id="kitchat-logo" src="img/Kitchat_Trans.png")
-        p.welcoming-text Please Login
+        if loginResponse.message == ""
+            p.welcoming-text Please Login
+        else
+            p.welcoming-text Login Failed! Please Try Again
         form.login-form(method = 'post', action = '/login')
             div.row
                 input(id="username",name="username",placeholder="Username",type="text")

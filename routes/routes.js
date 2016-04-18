@@ -27,7 +27,8 @@ module.exports = function (passport) {
 
 	router.route('/login')
 		.get(function(req,res){
-			res.render('auth/login');
+			res.render('auth/login',{message:req.flash('message')});
+			console.log("MESSAGE",req.flash('message'));
 		})
 		.post(passport.authenticate('login', {
 			successRedirect: '/chat',
