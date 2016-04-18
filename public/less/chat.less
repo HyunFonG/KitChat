@@ -358,9 +358,6 @@ html,body{
     height:5%;
     border-radius: 100%;
   }
-  .self-balloon{
-    float:right;
-  }
   .chat-zone{
     width:100%;
     input{
@@ -492,8 +489,8 @@ html,body{
     width:80%;
     padding-top:10px;
     padding-left: 5px;
-
   }
+
   .talk-bubble {
     margin: 40px;
     display: inline-block;
@@ -501,12 +498,19 @@ html,body{
     width: 200px;
     height: auto;
     background-color: @dark-chocolate;
-  }
-  @media (max-width: 768px){
-    .talk-bubble{
-      width:100px;
+    @media(max-width: 768px){
+        width:100px;
     }
   }
+  .self-balloon{
+    float:right;
+    background-color: #ff0000;
+  }
+  // @media (max-width: 768px){
+  //   .talk-bubble{
+  //
+  //   }
+  // }
   .tri-right.border.left-top:before {
     content: ' ';
     position: absolute;
@@ -553,10 +557,10 @@ html,body{
     top: 0px;
   	bottom: auto;
   	border: 20px solid;
-  	border-color: @dark-chocolate transparent transparent transparent;
+  	border-color: #ff0000 transparent transparent transparent;
   }
   .btn {
-    background-color: @dark-chocolate /* Green */
+    background-color: @dark-chocolate; /* Green */
     border: none;
     color: white;
     padding: 16px 32px;
@@ -569,15 +573,15 @@ html,body{
     transition-duration: 0.4s;
     cursor: pointer;
 }
-  .send-btn{
-      background-color: white;
-      color: @dark-chocolate;
-      border: 2px solid @dark-chocolate;
+    .send-btn{
+        background-color: white;
+        color: @dark-chocolate;
+        border: 2px solid @dark-chocolate;
+        &:hover{
+            background-color: @dark-chocolate;
+            color: white;
+            border-color: @dark-chocolate;
+        }
     }
-    .send-btn:hover {
-    background-color: @dark-chocolate;
-    color: white;
-    border-color: @dark-chocolate;
-}
 
 }
