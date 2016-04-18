@@ -59,11 +59,16 @@ chat.controller('groupListCtrl',function($scope,$rootScope,$http){
     //     return group.substring(0,10);
     // }
 
-    $scope.joinGroup = function(groupname){
+    $scope.joinGroup = function(groupname,index){
         console.log(groupname);
         $http.post("/joininggroup",{group:groupname})
         .success(function(data,status){
-            console.log("WE DID IT YEAH");
+            console.log("INDEX :"+index);
+            $rootScope.joinedgroups.push({"group":groupname});
+            // var groupElem = angular.element( document.querySelector('#box-'+groupname));
+            // groupElem.remove();
+            $rootScope.unjoinedgroups.splice(index,1);
+
         });
     }
 
