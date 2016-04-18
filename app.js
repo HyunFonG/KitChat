@@ -59,8 +59,8 @@ io.on('connection',function (socket) {
         // แสดงข้อมูลที่ได้ ออกมาทาง console
         //console.log(message);
         var current_time = (new Date()).getTime();
-        ChatMessage({username: data.username, room: data.room, message: data.message, create_at : current_time }).save();
-        io.sockets.in(data.room).emit('message', data.message);
+        ChatMessage({username: data.username, group: data.group, message: data.message, create_at : current_time }).save();
+        io.sockets.in(data.group).emit('message', data.message);
 
   	});
 })
