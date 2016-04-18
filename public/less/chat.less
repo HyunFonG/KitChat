@@ -277,28 +277,34 @@ html,body{
             padding-top: 15px;
             padding-bottom: 15px;
             margin-bottom: 15px;
-            .noti-count{
-                position:absolute;
-                left:75px;
-                top:12%;
-                border-radius: 50%;
-                width: 29px;
-                height: 29px;
-                padding: 5px;
-                background: #ff0000;
-                border: none;
-                color: @white;
-                font-size:14px;
-                text-align: center;
-                z-index: 999;
-                @media(max-width: 768px){
-                    width: 21px;
-                    height: 21px;
-                    padding:3px;
-                    font-size: 10px;
-                    left:49px;
-                }
+            .nice-transition();
+            cursor: pointer;
+            &:hover{
+                background-color: #F5F5F5;
+                .box-shadow();
             }
+            // .noti-count{
+            //     position:absolute;
+            //     left:75px;
+            //     top:12%;
+            //     border-radius: 50%;
+            //     width: 29px;
+            //     height: 29px;
+            //     padding: 5px;
+            //     background: #ff0000;
+            //     border: none;
+            //     color: @white;
+            //     font-size:14px;
+            //     text-align: center;
+            //     z-index: 999;
+            //     @media(max-width: 768px){
+            //         width: 21px;
+            //         height: 21px;
+            //         padding:3px;
+            //         font-size: 10px;
+            //         left:49px;
+            //     }
+            // }
             .group-circle{
                 text-transform: uppercase;
                 text-align: center;

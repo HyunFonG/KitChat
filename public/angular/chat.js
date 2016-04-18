@@ -15,23 +15,23 @@ chat.config(['$routeProvider', '$locationProvider',function($routeProvider, $loc
     $routeProvider.
     when('/list', {
         templateUrl: 'partials/chat-list',
-        controller: 'testCtrl'
+        controller: 'chatRoomCtrl'
     }).
     when('/room', {
         templateUrl: 'partials/chat-room',
-        controller: 'testCtrl'
+        controller: 'chatRoomCtrl'
     }).
     otherwise({
         redirectTo: '/chat'
     });
     // $locationProvider.html5Mode(true);
 }]);
-
-chat.controller('testCtrl',function($scope){
-    $scope.chatList = "chat list";
-    $scope.chatRoom = "chat room";
-
-});
+//
+// chat.controller('testCtrl',function($scope){
+//     $scope.chatList = "chat list";
+//     $scope.chatRoom = "chat room";
+//
+// });
 
 chat.controller('addGroupCtrl',function($scope,$rootScope,$http){
     $scope.createGroup = function(){
@@ -52,16 +52,15 @@ chat.controller('groupListCtrl',function($scope,$rootScope,$http){
         $rootScope.joinedgroups = data['joinedgroup'];
     });
 
-    $scope.twoLetterGroupName = function(group){
-        return group.substring(0,2);
-    }
-    $scope.groupnameToDisplay = function(group){
-        return group.substring(0,10);
-    }
+    // $scope.twoLetterGroupName = function(group){
+    //     return group.substring(0,2);
+    // }
+    // $scope.groupnameToDisplay = function(group){
+    //     return group.substring(0,10);
+    // }
 
     $scope.joinGroup = function(groupname){
         console.log(groupname);
-        //TODO POST TO ROUTE
         $http.post("/joininggroup",{group:groupname})
         .success(function(data,status){
             console.log("WE DID IT YEAH");
@@ -70,6 +69,10 @@ chat.controller('groupListCtrl',function($scope,$rootScope,$http){
 
 });
 
-chat.controller('messageListCtrl',function($scope,$rootScope){
-
+chat.controller('messageListCtrl',function($scope,$rootScope,$location){
+    $scope.navigateToChatRoom = function(route_path){
+        console.log("Hello I'am Navigate to Chat Room");
+        //TODO Make navigate to chat room with specific id (or name somehow...)
+        $location.path(route_path);
+    }
 });
