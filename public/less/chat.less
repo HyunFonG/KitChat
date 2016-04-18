@@ -370,7 +370,7 @@ html,body{
         font-size:18px;
         padding:10px 10px 10px 5px;
         display: inline-block;
-        width:70%;
+        width:100%;
         border:none;
         border-bottom:1px solid #757575;
     }
@@ -422,7 +422,7 @@ html,body{
     @media(max-width: 768px){
       input{
         font-size: 15px;
-        width:85%;
+        width:95%;
         padding-top: 1em;
       }
       label{
@@ -430,7 +430,7 @@ html,body{
         left:0px;
       }
       .bar{
-        width:85%;
+        width:95%;
       }
       .chat-zone{
         margin-top: 1em;
@@ -482,6 +482,9 @@ html,body{
     width:80%;
     padding-top:10px;
     padding-left: 5px;
+    @media(max-width:768px){
+        font-size: 17px;
+    }
   }
 
   .talk-bubble {
@@ -492,7 +495,7 @@ html,body{
     height: auto;
     background-color: @dark-chocolate;
     @media(max-width: 768px){
-        width:100px;
+        width:120px;
     }
   }
   .self-balloon{
@@ -566,10 +569,28 @@ html,body{
     transition-duration: 0.4s;
     cursor: pointer;
     }
+    .chat-zone-type{
+        margin-top: 1em;
+        position: fixed;
+         top:90%;
+         width: 80%;
+    }
+    .input-group{
+        margin-bottom: 1.2em;
+        // position: fixed;
+        // top:90%;
+        // width: 80%;
+        input{
+            background-color: transparent;
+        }
+    }
     .send-btn{
+        font-size: 12px;
         background-color: white;
         color: @dark-chocolate;
         border: 2px solid @dark-chocolate;
+        padding: 3px;
+        background-color: transparent;
         &:hover{
             background-color: @dark-chocolate;
             color: white;
