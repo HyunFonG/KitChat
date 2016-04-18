@@ -22,7 +22,7 @@ chat.config(['$routeProvider', '$locationProvider',function($routeProvider, $loc
         controller: 'chatRoomCtrl'
     }).
     otherwise({
-        redirectTo: '/chat'
+        templateUrl: 'partials/chat-list'
     });
     // $locationProvider.html5Mode(true);
 }]);

@@ -1,1 +1,9 @@
-{{chatList}}
+h1.heading Message
+//- each val in [1,2,3,4]
+div.chat-item.col-sm-6.col-xs-12(ng-repeat="msg in joinedgroups")
+    div.chat-box.col-sm-12.col-xs-12(ng-click="navigateToChatRoom('/room')")
+        div.col-sm-3.col-xs-3.group-circle
+            span(ng-bind="msg.group | limitTo:2")
+        div.col-sm-9.col-xs-9.group-name
+            div.row.chat-group-name
+                span(ng-bind="msg.group")
