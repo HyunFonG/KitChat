@@ -7,13 +7,76 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var flash = require('connect-flash');
+var bCrypt = require('bcrypt-nodejs');
 var app = express();
 
 // ---------------- DB Connection ------------------
 
 var dbConfig = require('./db.js')
 var mongoose = require('mongoose');
-mongoose.connect(dbConfig.url);
+var seeder = require('mongoose-seed');
+seeder.connect(dbConfig.url,function(){
+
+	seeder.loadModels([
+		'./model/ChatMessage.js',
+		'./model/Group.js',
+		'./model/User.js',
+		'./model/UserJoinedGroup.js'
+	]);
+
+	seeder.clearModels(['ChatMessage','Group','User','UserJoinedGroup'],function(){
+		seeder.populateModels([
+			{
+				'model':'ChatMessage',
+				'documents':[
+					{
+						'username':'aa',
+						'group':'OK',
+						'message': 'เอากับกูมั้ย',
+						'create_at': new Date("1994-11-29")
+					},
+					{
+						'username':'bb',
+						'group':'OK',
+						'message': 'เอา',
+						'create_at': new Date("1994-11-30")
+					}
+				]
+			},
+			{
+				'model':'Group',
+				'documents':[
+					{
+						'name':'OK'
+					},
+					{
+						'name':'OK2'
+					}
+				]
+			},
+			{
+				'model':'User',
+				'documents':[
+					{
+						'username':'aa',
+						'password':bCrypt.hashSync('aa', bCrypt.genSaltSync(10), null)
+					}
+				]
+			},
+			{
+				'model':'UserJoinedGroup',
+				'documents':[
+					{
+						'username':'aa',
+						'group':'OK',
+						'joined_at': new Date('1994-11-28')
+					}
+				]
+			}
+		]);
+	});
+});
+//mongoose.connect(dbConfig.url);
 var ChatMessage = require('./model/ChatMessage.js');
 
 // ---------------- Listen Port ------------------
