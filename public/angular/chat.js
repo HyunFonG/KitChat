@@ -70,11 +70,32 @@ chat.controller('messageListCtrl',function($scope,$rootScope,$location){
     }
 });
 
-chat.controller('chatRoomCtrl',function($scope,$location,$routeParams){
+chat.controller('chatRoomCtrl',function($scope,$location,$routeParams,$http){
     $scope.navigateBack = function(){
         console.log("I'am going back");
         //TODO Make navigate to chat room with specific id (or name somehow...)
         $location.path('/list');
     }
     $scope.roomTitle = " "+$routeParams.groupname;
+
+    $http.post('/loadMessage',{groupname:$routeParams.groupname})
+    .success(function(data,status){
+        console.log(data);
+        $scope.messagesList = data['message'];
+        $scope.currentUser = data['cur_user'];
+    });
+
+    $scope.getLeftRightClass = function(index,messageList,currentUser,mode){
+        console.log(mode);
+        if(messageList[index]["username"] != currentUser){
+            if(mode == 0)
+                return "message-leftzone";
+            return "message-left";
+        }
+        else{
+            if(mode == 0)
+                return "message-rightzone";
+            return "message-right";
+        }
+    }
 })

@@ -6,19 +6,22 @@ div#chat-room
         span.room-name-circle AA
         span.room-name(ng-bind="roomTitle") &nbsp
     div.chat-room-message
-        div.message.message-leftzone
-            p.sender-name FongKak
-            p.message-left สวัสดี งานเยอะจังวะอีดอกอันนี้แม้งยาวมากนี่พูดเลย
-        div.message.message-rightzone
-            p.message-right นั่นนะสิ
-        div.message.message-leftzone
-            p.sender-name FongKak
-            p.message-left สวัสดี งานเยอะจังวะอีดอก
-        div.message.message-leftzone
-            p.sender-name FongKak
-            p.message-left สวัสดี งานเยอะจังวะอีดอก
-        div.message.message-rightzone
-            p.message-right นั่นนะสิสวัสดีฮัลโหลฮ่าๆๆๆๆๆ วดฟ ยาวอีกกกกกกกกกก
+        div.message(ng-repeat="message in messagesList",ng-class="getLeftRightClass($index,messagesList,currentUser,0)")
+            p.sender-name(ng-show="message.username != currentUser") {{message.username}}
+            p(ng-class="getLeftRightClass($index,messagesList,currentUser,1)") {{message.message}}
+        //- div.message.message-leftzone
+        //-     p.sender-name FongKak
+        //-     p.message-left สวัสดี งานเยอะจังวะอีดอกอันนี้แม้งยาวมากนี่พูดเลย
+        //- div.message.message-rightzone
+        //-     p.message-right นั่นนะสิ
+        //- div.message.message-leftzone
+        //-     p.sender-name FongKak
+        //-     p.message-left สวัสดี งานเยอะจังวะอีดอก
+        //- div.message.message-leftzone
+        //-     p.sender-name FongKak
+        //-     p.message-left สวัสดี งานเยอะจังวะอีดอก
+        //- div.message.message-rightzone
+        //-     p.message-right นั่นนะสิสวัสดีฮัลโหลฮ่าๆๆๆๆๆ วดฟ ยาวอีกกกกกกกกกก
         
     div.chat-room-textfield
         span

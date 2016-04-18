@@ -102,7 +102,7 @@ module.exports = function (passport) {
 	router.post('/loadMessage',isAuthenticated,function(req,res){
 		UserJoinedGroup.findOne({'username':req.user.username,'group':req.body.groupname},function(err,ujg){
 				ChatMessage.find({'group':req.body.groupname,'create_at':{$gt: ujg.joined_at}}).sort('create_at').exec(function(err,msg){
-					res.json({'message':msg});
+					res.json({'message':msg,'cur_user':req.user.username});
 				});
 		});
 	});
