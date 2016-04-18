@@ -1,6 +1,7 @@
 var express = require('express');
 var Group = require('../model/Group');
 var UserJoinedGroup = require('../model/UserJoinedGroup');
+var ChatMessage = require('../model/ChatMessage');
 var router = express.Router();
 
 var isAuthenticated = function (req, res, next) {
@@ -37,7 +38,6 @@ module.exports = function (passport) {
 		}));
 	router.route('/register')
 		.get(function(req,res){
-
 			res.render('auth/register');
 		})
 		.post(passport.authenticate('signup', {
@@ -47,12 +47,6 @@ module.exports = function (passport) {
 		}));
 
 	router.get('/chat',isAuthenticated,function(req,res){
-		/*Group.find({}).select({name:1,_id:0}).exec(function(err,group){
-			UserJoinedGroup.find({username : req.user.username}).select({group:1,username:0,joined_at:0,_id:0}).exec(function(err,joinedgroup){
-				console.log(joinedgroup);
-				res.render('chat',{grouplist : group});
-			});
-		});*/
 		res.render('chat');
 	});
 
@@ -79,18 +73,12 @@ module.exports = function (passport) {
 		});
 	});
 
-	router.get('/test',function(req,res) {
-		var current_time = (new Date()).getTime();
-		UserJoinedGroup({username:req.query.name,group:req.query.group,'leave_at':current_time}).save();
-		res.send('OK');
-	});
-
-	router.get('/logout',function(req,res){
+	router.get('/logout',isAuthenticated,function(req,res){
 		req.logout();
 		res.redirect('/login');
 	});
 
-	router.post('/createGroup',function(req,res){
+	router.post('/createGroup',isAuthenticated,function(req,res){
 		console.log("DEBUG");
 		console.log(req.body.groupname);
 		console.log("END DEBUG");
@@ -111,9 +99,17 @@ module.exports = function (passport) {
 		});
 	});
 
+	router.post('/loadMessage',isAuthenticated,function(req,res){
+		UserJoinedGroup.findOne({'username':req.user.username,'group':req.body.groupname},function(err,ujg){
+				ChatMessage.find({'group':req.body.groupname,'create_at':{$gt: ujg.joined_at}}).sort('create_at').exec(function(err,msg){
+					res.json({'message':msg});
+				});
+		});
+	});
+
 	router.post('/joininggroup',isAuthenticated,function(req,res){
 		var current_time = (new Date()).getTime();
-		UserJoinedGroup({username:req.user.username,group:req.body.group,'leave_at':current_time}).save();
+		UserJoinedGroup({'username':req.user.username,group:req.body.group,'joined_at':current_time}).save();
 		res.redirect('/chat');
 	});
 

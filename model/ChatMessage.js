@@ -4,7 +4,7 @@ var Schema = mongoose.Schema;
 
 var chatMessageSchema = new Schema({
 	username: String,
-	room: String,
+	group: String,
 	message: String,
 	create_at: Date
 });
