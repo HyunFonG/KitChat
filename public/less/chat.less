@@ -343,11 +343,11 @@ html,body{
     }
 }
 #chat-page{
-  .chat-zone{
-    width:100%;
-    //back-ground-color:@dark-chocolate;
-
-  }
+  // .chat-zone{
+  //   width:100%;
+  //   //back-ground-color:@dark-chocolate;
+  //
+  // }
   .frd-pic{
     width:7%;
     height:7%;
@@ -361,28 +361,15 @@ html,body{
   .chat-zone{
     width:100%;
     input{
-      font-size:18px;
-      padding:10px 10px 10px 5px;
-      display: inline-block;
-      width:70%;
-      border:none;
-      border-bottom:1px solid #757575;
+        font-size:18px;
+        padding:10px 10px 10px 5px;
+        display: inline-block;
+        width:70%;
+        border:none;
+        border-bottom:1px solid #757575;
     }
-    input:focus{ outline:none; }
-    /* LABEL ======================================= */
+    input:focus{ outline:none; }    /* LABEL ======================================= */
 
-    label{
-      color:@dark-chocolate;
-      font-size:18px;
-      font-weight:normal;
-      position:absolute;
-      pointer-events:none;
-      left:5px;
-      top:10px;
-      transition:0.2s ease all;
-      -moz-transition:0.2s ease all;
-      -webkit-transition:0.2s ease all;
-    }
 
     /* active state */
     input:focus ~ label, input:valid ~ label{
@@ -572,7 +559,7 @@ html,body{
     -webkit-transition-duration: 0.4s; /* Safari */
     transition-duration: 0.4s;
     cursor: pointer;
-}
+    }
     .send-btn{
         background-color: white;
         color: @dark-chocolate;
