@@ -1,74 +1,25 @@
-//- div#chat-page
-//-     div.container(width:100%;)
-//-         div.frd-div
-//-             a(href="#")
-//-                 img.back-arrow(src="img/arrows.svg")
-//-             img.frd-pic.img-rounded.center-block(src="img/test.png")
-//-             p.frd-name ปฏิวัติหัวใจกับนายโอชา
-//-         div.chat-div.scrollable
-//-             each val in [1,2,3,4,5]
-//-                 div.row(width:100%;)
-//-                     img.frd-chat-pic.img-rounded(src="img/test.png")
-//-                     div.frd-balloon 
-//-                         p ใครเล่นผมนี่ผมรู้หมดนะ เดี๋ยวทุ่มด้วยโพเดียมเลย!!
-//-                 div.row(width:100%;)
-//-                     div.self-balloon
-//-                         p โอ๋นะ ล้อเล่นเฉยๆ
-//-         div.type-div
-//-             span
-//-                 input(type="text",placeholder="Type Message")
-//-                 button.btn.send-btn
-//-                     strong SEND
-//-                     
-//-             
 div#chat-room
     div.chat-room-title
-        div.back-btn
+        div.back-btn(ng-click="navigateBack()")
             i.fa.fa-chevron-left(aria-hidden="true")
             span.back-text &nbspBACK
         span.room-name-circle AA
-        span.room-name &nbspสวัสดีชาวโลก
+        span.room-name(ng-bind="roomTitle") &nbsp
     div.chat-room-message
-        div.message-leftzone
+        div.message.message-leftzone
+            p.sender-name FongKak
             p.message-left สวัสดี งานเยอะจังวะอีดอกอันนี้แม้งยาวมากนี่พูดเลย
-        //- div.message-rightzone
-        //-     p.message-right นั่นนะสิ
-        div.message-leftzone
+        div.message.message-rightzone
+            p.message-right นั่นนะสิ
+        div.message.message-leftzone
+            p.sender-name FongKak
             p.message-left สวัสดี งานเยอะจังวะอีดอก
-        div.message-leftzone
+        div.message.message-leftzone
+            p.sender-name FongKak
             p.message-left สวัสดี งานเยอะจังวะอีดอก
-        div.message-leftzone
-            p.message-left สวัสดี งานเยอะจังวะอีดอก
-        div.message-leftzone
-            p.message-left สวัสดี งานเยอะจังวะอีดอก
-        div.message-leftzone
-            p.message-left สวัสดี งานเยอะจังวะอีดอก
-        div.message-leftzone
-            p.message-left สวัสดี งานเยอะจังวะอีดอก
-        div.message-leftzone
-            p.message-left สวัสดี งานเยอะจังวะอีดอก
-        div.message-leftzone
-            p.message-left สวัสดี งานเยอะจังวะอีดอก
-        div.message-leftzone
-            p.message-left สวัสดี งานเยอะจังวะอีดอก
-        div.message-leftzone
-            p.message-left สวัสดี งานเยอะจังวะอีดอก
-        div.message-leftzone
-            p.message-left สวัสดี งานเยอะจังวะอีดอก
-        div.message-leftzone
-            p.message-left สวัสดี งานเยอะจังวะอีดอก
-        div.message-leftzone
-            p.message-left สวัสดี งานเยอะจังวะอีดอก
-        div.message-leftzone
-            p.message-left สวัสดี งานเยอะจังวะอีดอก
-        div.message-leftzone
-            p.message-left สวัสดี งานเยอะจังวะอีดอก
-        div.message-leftzone
-            p.message-left สวัสดี งานเยอะจังวะอีดอก
-        div.message-leftzone
-            p.message-left สวัสดี งานเยอะจังวะอีดอก
-        div.message-leftzone
-            p.message-left สวัสดี งานเยอะจังวะอีดอก
+        div.message.message-rightzone
+            p.message-right นั่นนะสิสวัสดีฮัลโหลฮ่าๆๆๆๆๆ วดฟ ยาวอีกกกกกกกกกก
+        
     div.chat-room-textfield
         span
             input(type="text",placeholder="Type Message Here")

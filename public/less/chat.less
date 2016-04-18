@@ -5,6 +5,10 @@ html,body{
     height: 100%;
     overflow: hidden;
 }
+
+#toast-container>div{
+    opacity: 1;
+}
 .tab{
     text-align: center;
     border-bottom: 2px solid @main-theme;
@@ -506,28 +510,46 @@ html,body{
         // height:50vh;
         height:calc(75vh-7px);
         overflow-y: scroll;
+
+        .message{
+            padding-top: 5px;
+            padding-bottom: 5px;
+            .sender-name{
+                margin-bottom: 3px;
+                font-size: 18px;
+                font-weight: 600;
+            }
+        }
         .message-leftzone{
+            // display: inline-block;
+            padding-left: 10px;
             .message-left{
                 background-color: @material-gray;
-                width: 250px;
-                border-radius: 5px;
-                font-size: 17px;
+                // width: 250px;
+                // width: auto;;
+                max-width: 50%;
+                border-radius: 10px;
+                font-size: 15px;
                 color: @black;
                 padding: 8px;
             }
         }
         .message-rightzone{
-            float: right;
+            // width: 250px;
+            // display: inline-block;
+            padding-right: 10px;
+            text-align: right;
             .message-right{
                 text-align: right;
                 background-color: @dark-chocolate;
-                width: 250px;
-                // margin-left: 250px;
-                border-radius: 5px;
-                font-size: 17px;
+                display: inline-block;
+                max-width: 50%;
+                border-radius: 10px;
+                font-size: 15px;
                 color: @white;
                 padding: 8px;
             }
         }
+
     }
 }

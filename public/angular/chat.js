@@ -1,4 +1,4 @@
-var chat = angular.module('chat',['ngRoute']);
+var chat = angular.module('chat',['ngRoute','ngAnimate']);
 
 chat.directive('addModal',function(){
     return {
@@ -15,9 +15,9 @@ chat.config(['$routeProvider', '$locationProvider',function($routeProvider, $loc
     $routeProvider.
     when('/list', {
         templateUrl: 'partials/chat-list',
-        controller: 'chatRoomCtrl'
+        // controller: 'chatRoomCtrl'
     }).
-    when('/room', {
+    when('/room/:groupname', {
         templateUrl: 'partials/chat-room',
         controller: 'chatRoomCtrl'
     }).
@@ -26,12 +26,6 @@ chat.config(['$routeProvider', '$locationProvider',function($routeProvider, $loc
     });
     // $locationProvider.html5Mode(true);
 }]);
-//
-// chat.controller('testCtrl',function($scope){
-//     $scope.chatList = "chat list";
-//     $scope.chatRoom = "chat room";
-//
-// });
 
 chat.controller('addGroupCtrl',function($scope,$rootScope,$http){
     $scope.createGroup = function(){
@@ -52,13 +46,6 @@ chat.controller('groupListCtrl',function($scope,$rootScope,$http){
         $rootScope.unjoinedgroups = data['unjoinedgroup'];
         $rootScope.joinedgroups = data['joinedgroup'];
     });
-
-    // $scope.twoLetterGroupName = function(group){
-    //     return group.substring(0,2);
-    // }
-    // $scope.groupnameToDisplay = function(group){
-    //     return group.substring(0,10);
-    // }
 
     $scope.joinGroup = function(groupname,index){
         console.log(groupname);
@@ -82,3 +69,12 @@ chat.controller('messageListCtrl',function($scope,$rootScope,$location){
         $location.path(route_path);
     }
 });
+
+chat.controller('chatRoomCtrl',function($scope,$location,$routeParams){
+    $scope.navigateBack = function(){
+        console.log("I'am going back");
+        //TODO Make navigate to chat room with specific id (or name somehow...)
+        $location.path('/list');
+    }
+    $scope.roomTitle = " "+$routeParams.groupname;
+})
