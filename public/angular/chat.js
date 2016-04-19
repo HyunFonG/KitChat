@@ -11,6 +11,26 @@ chat.directive('addModal',function(){
     }
 });
 
+chat.run(function($rootScope,$http){
+    var socket = io.connect();
+    $http.get("/api/user")
+    .success(function(data, status) {
+        console.log("GET /API/USER");
+        console.log(data);
+        // console.log($rootScope.groups);
+        $rootScope.username = data.username;
+    });
+    socket.on('newgroup',function(data){
+        console.log("RECEIVE FROM BROADCAST");
+        console.log(data);
+        console.log($rootScope.username);
+        if($rootScope.username != data.create_by){
+            $rootScope.unjoinedgroups.push({"name":data.group});
+            $rootScope.$apply();
+        }
+    });
+});
+
 chat.config(['$routeProvider', '$locationProvider',function($routeProvider, $locationProvider) {
     $routeProvider.
     when('/list', {
@@ -32,14 +52,19 @@ chat.config(['cfpLoadingBarProvider', function(cfpLoadingBarProvider) {
 }]);
 
 chat.controller('addGroupCtrl',function($scope,$rootScope,$http){
+    var socket = io.connect();
     $scope.createGroup = function(){
         console.log("HELLO");
         $http.post("/createGroup", {groupname:$scope.groupname})
         .success(function(data, status) {
-            console.log($rootScope.groups);
+            console.log("DATA");
+            console.log(data);
+            // console.log($rootScope.groups);
             $rootScope.unjoinedgroups.push({"name":$scope.groupname});
             $scope.dismiss();
             toastr["success"]($scope.groupname+" has been created!", "Group Created!");
+            $rootScope.username = data.sender_username;
+            socket.emit('newgroup',{"group":$scope.groupname,"sender_username":data.sender_username});
         });
     }
 });

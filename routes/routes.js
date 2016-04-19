@@ -73,6 +73,10 @@ module.exports = function (passport) {
 		});
 	});
 
+	router.get('/api/user',isAuthenticated,function(req,res){
+		res.json({"username":req.user.username});
+	})
+	
 	router.get('/logout',isAuthenticated,function(req,res){
 		req.logout();
 		res.redirect('/login');
@@ -94,7 +98,8 @@ module.exports = function (passport) {
 					return done(null, false, req.flash('message','Group Already Exists'));
 				} else {
 					Group({name : req.body.groupname}).save();
-					res.redirect('/chat');
+					res.json({'sender_username':req.user.username});
+					// res.redirect('/chat');
 				}
 		});
 	});
