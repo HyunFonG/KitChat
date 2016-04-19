@@ -74,7 +74,7 @@ chat.controller('messageListCtrl',function($scope,$rootScope,$location){
     }
 });
 
-chat.controller('chatRoomCtrl',function($scope,$location,$routeParams,$http){
+chat.controller('chatRoomCtrl',function($scope,$location,$routeParams,$http,$timeout){
     $scope.navigateBack = function(){
         console.log("I'am going back");
         //TODO Make navigate to chat room with specific id (or name somehow...)
@@ -87,10 +87,15 @@ chat.controller('chatRoomCtrl',function($scope,$location,$routeParams,$http){
         console.log(data);
         $scope.messagesList = data['message'];
         $scope.currentUser = data['cur_user'];
+        $timeout(function(){
+            var objDiv = document.getElementById("to-scroll");
+            objDiv.scrollTop = objDiv.scrollHeight;
+        },0,false);
+
     });
 
     $scope.getLeftRightClass = function(index,messageList,currentUser,mode){
-        console.log(mode);
+        // console.log(mode);
         if(messageList[index]["username"] != currentUser){
             if(mode == 0)
                 return "message-leftzone";
