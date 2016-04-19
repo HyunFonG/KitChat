@@ -61,6 +61,25 @@ block content
                         Close
                     button(ng-click="createGroup()",class="btn btn-default").
                         Create Group
+    div#add-group-modal.modal.fade(tabindex="-1",role="dialog",ng-controller="addGroupCtrl",add-modal)
+        div.modal-dialog
+            div.modal-content
+                div.modal-header
+                    button(type="button",class="close",data-dismiss="modal",aria-label="Close")
+                        span(aria-hidden="true").
+                            &times;
+                    h4.modal-titles
+                        strong Create Group
+                //- form
+                div.modal-body
+                    input(ng-model="groupname",placeholder="Name",type="text")
+                    span.highlight
+                    span.bar
+                div.modal-footer
+                    button(ng-click="createGroup()",class="btn btn-default").
+                        Create Group
+                    button(type="button",class="btn btn-default",data-dismiss="modal").
+                        Close
 
 block js
     script(src="angular/chat.js")

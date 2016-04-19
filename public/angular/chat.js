@@ -1,4 +1,4 @@
-var chat = angular.module('chat',['ngRoute','ngAnimate']);
+var chat = angular.module('chat',['ngRoute','ngAnimate','angular-loading-bar']);
 
 chat.directive('addModal',function(){
     return {
@@ -25,6 +25,10 @@ chat.config(['$routeProvider', '$locationProvider',function($routeProvider, $loc
         templateUrl: 'partials/chat-list'
     });
     // $locationProvider.html5Mode(true);
+}]);
+
+chat.config(['cfpLoadingBarProvider', function(cfpLoadingBarProvider) {
+    cfpLoadingBarProvider.includeSpinner = false;
 }]);
 
 chat.controller('addGroupCtrl',function($scope,$rootScope,$http){

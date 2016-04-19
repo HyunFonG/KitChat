@@ -2,7 +2,7 @@ div#chat-room
     div.chat-room-title
         div.back-btn(ng-click="navigateBack()")
             i.fa.fa-chevron-left(aria-hidden="true")
-            span.back-text &nbspBACK
+            span.back-text &nbspBack
         span.room-name(ng-bind="roomTitle")
     div.chat-room-message
         div.message(ng-repeat="message in messagesList",ng-class="getLeftRightClass($index,messagesList,currentUser,0)")
@@ -24,5 +24,5 @@ div#chat-room
         
     div.chat-room-textfield
         span
-            input.message-box(type="text",placeholder="Type Message Here")
+            input.message-box.form-control(type="text",placeholder="Type Message Here")
             button.btn.btn-default Send
