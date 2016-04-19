@@ -23,6 +23,6 @@ div#chat-room
         //-     p.message-right นั่นนะสิสวัสดีฮัลโหลฮ่าๆๆๆๆๆ วดฟ ยาวอีกกกกกกกกกก
         
     div.chat-room-textfield
-        span
-            input.message-box.form-control(type="text",placeholder="Type Message Here",ng-model="messageToSend")
+        div.wrapper
+            input.message-box(type="text",placeholder="Type Message Here",ng-model="messageToSend",ng-keyup="$event.keyCode == 13 && sendMessage()")
             button.btn.btn-default(type="button",ng-click="sendMessage()") Send

@@ -113,6 +113,7 @@ chat.controller('chatRoomCtrl',function($scope,$location,$routeParams,$http,$tim
         // console.log("TO SEND:"+$scope.messageToSend);
         // var io = require('socket.io');
         socket.emit('chat', {"username":$scope.currentUser,"message":$scope.messageToSend,"group":$routeParams.groupname});
+        $scope.messageToSend = null;
     }
     socket.on('message', function (data) {
         console.log("RECEIVE FROM SOCKET");

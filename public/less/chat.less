@@ -106,10 +106,12 @@ html,body{
             transform: scale(1.2);
         }
         @media(max-width: 768px){
-            width: 40px;
-            height:40px;
-            font-size:30px;
-            line-height: 35px;
+            width: 50px;
+            height:50px;
+            font-size:38px;
+            line-height: 43px;
+            right:5%;
+            bottom:3%;
         }
     }
     .chat-group{
@@ -338,6 +340,7 @@ html,body{
     margin-top: 16px;
     border: 3px solid @dark-chocolate;
     height: 87vh;
+    width: 100%;
     .chat-room-title{
         display: block;
         padding-top: 19px;
@@ -352,9 +355,13 @@ html,body{
             top:7%;
             left: 2%;
             cursor: pointer;
+            .nice-transition();
+            &:hover{
+                color: @yellow;
+            }
             @media(max-width: 768px){
-                font-size: 14px;
-                top:8%;
+                font-size: 19px;
+                top:7%;
             }
         }
         .room-name-circle{
@@ -387,7 +394,9 @@ html,body{
         // height:calc(75vh-7px);
         height: 70vh;
         overflow-y: scroll;
-
+        @media(max-width: 768px){
+            height:67vh;
+        }
         .message{
             padding-top: 5px;
             padding-bottom: 5px;
@@ -430,25 +439,61 @@ html,body{
 
     }
     .chat-room-textfield{
-        .message-box{
-            width: 88%;
-            padding-left: 5px;
-            padding-right: 5px;
+        position: absolute;
+        bottom: 0;
+        right:0;
+        width: 100%;
+        // height:30px;
+        .wrapper{
             display: inline-block;
-            margin-left: 5px;
-            margin-right: 6px;
-            @media(max-width: 768px){
-                width: 78%;
+            // border: 3px solid @main-theme;
+            border-top: 3px solid @main-theme;
+            width: 100%;
+            input,button{
+                background-color: transparent;
+                border: 0;
+            }
+            .message-box{
+                width: 88%;
+                height:44px;
+                padding-left: 13px;
+                padding-right: 13px;
+                // display: inline-block;
+                // margin-left: 5px;
+                // margin-right: 6px;
+                // height:42px;
+                // border-color: @dark-chocolate;
+                // border-radius: 0px;
+                // @media(max-width: 768px){
+                //     width: 78%;
+                // }
+                &:focus{
+                    outline: none;
+                }
+            }
+            .btn-default{
+                width: 12%;
+                position: absolute;
+                right: 0;
+                top: 0;
+                height:44px;
+                border-radius: 0px;
+                background-color: @main-theme;
+                color:@white;
+                // height:42px;
+                .nice-transition();
+                &:hover{
+                    background-color: @red;
+                }
+                &:focus{
+                    outline: none;
+                }
+                @media(max-width: 768px){
+                    width: 22%;
+                }
             }
         }
-        .btn-default{
-            width: 10%;
-            background-color: @dark-chocolate;
-            color:@white;
-            @media(max-width: 768px){
-                width: 22%;
-            }
-        }
+
     }
 }
 
