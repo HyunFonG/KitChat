@@ -70,5 +70,10 @@ io.on('connection',function (socket) {
 		console.log("SUBSCRIBE");
 		console.dir(data);
 		socket.join(data.room);
+	});
+	socket.on('unsubscribe',function(data){
+		console.log("UNSUBSCRIBE");
+		console.dir(data);
+		socket.leave(data.room);
 	})
 })

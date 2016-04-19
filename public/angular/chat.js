@@ -78,9 +78,10 @@ chat.controller('chatRoomCtrl',function($scope,$location,$routeParams,$http,$tim
     var socket = io.connect();
     $scope.navigateBack = function(){
         console.log("I'am going back");
-        //TODO Make navigate to chat room with specific id (or name somehow...)
+        socket.emit('unsubscribe',{"room":$routeParams.groupname});
         $location.path('/list');
     }
+
     $scope.roomTitle = " "+$routeParams.groupname;
 
     $http.post('/loadMessage',{groupname:$routeParams.groupname})
