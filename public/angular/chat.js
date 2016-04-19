@@ -39,7 +39,7 @@ chat.controller('addGroupCtrl',function($scope,$rootScope,$http){
             console.log($rootScope.groups);
             $rootScope.unjoinedgroups.push({"name":$scope.groupname});
             $scope.dismiss();
-            toastr["success"]($scope.groupname+" has created!", "Success!");
+            toastr["success"]($scope.groupname+" has been created!", "Group Created!");
         });
     }
 });
@@ -60,7 +60,7 @@ chat.controller('groupListCtrl',function($scope,$rootScope,$http){
             // var groupElem = angular.element( document.querySelector('#box-'+groupname));
             // groupElem.remove();
             $rootScope.unjoinedgroups.splice(index,1);
-            toastr["success"]("You joined "+groupname+" group!", "Joined!");
+            toastr["success"]("You joined group \""+groupname+"\"", "Joined!");
         });
     }
 

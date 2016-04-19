@@ -20,7 +20,7 @@ block content
         //-     a(data-toggle="tab",href="#chat-page")
         //-        i.material-icons question_answer
         li
-            a(href="/logout")
+            a(data-toggle="modal",data-target="#logout-confirmation")
                 i.material-icons exit_to_app
     div.tab-content.container
         div.col-sm-12.col-xs-12#group.tab-pane.fade.in.active(ng-controller="groupListCtrl")
@@ -61,7 +61,7 @@ block content
                         Close
                     button(ng-click="createGroup()",class="btn btn-default").
                         Create Group
-    div#add-group-modal.modal.fade(tabindex="-1",role="dialog",ng-controller="addGroupCtrl",add-modal)
+    div#logout-confirmation.modal.fade(tabindex="-1",role="dialog",ng-controller="addGroupCtrl",add-modal)
         div.modal-dialog
             div.modal-content
                 div.modal-header
@@ -69,17 +69,14 @@ block content
                         span(aria-hidden="true").
                             &times;
                     h4.modal-titles
-                        strong Create Group
+                        strong Do you want to logout?
                 //- form
-                div.modal-body
-                    input(ng-model="groupname",placeholder="Name",type="text")
-                    span.highlight
-                    span.bar
+            
                 div.modal-footer
-                    button(ng-click="createGroup()",class="btn btn-default").
-                        Create Group
+                    button(onclick="location.href='/logout'",class="btn btn-default").
+                        Yes
                     button(type="button",class="btn btn-default",data-dismiss="modal").
-                        Close
+                        No
 
 block js
     script(src="angular/chat.js")
