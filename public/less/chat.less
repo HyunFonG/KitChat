@@ -127,6 +127,7 @@ html,body{
                 text-transform: uppercase;
             }
             .group-name{
+                .make-ellipsis-text();
                 @media(max-width: 768px){
                     font-size: 20px;
                     font-weight: 400;
@@ -288,28 +289,6 @@ html,body{
                 background-color: #F5F5F5;
                 .box-shadow();
             }
-            // .noti-count{
-            //     position:absolute;
-            //     left:75px;
-            //     top:12%;
-            //     border-radius: 50%;
-            //     width: 29px;
-            //     height: 29px;
-            //     padding: 5px;
-            //     background: #ff0000;
-            //     border: none;
-            //     color: @white;
-            //     font-size:14px;
-            //     text-align: center;
-            //     z-index: 999;
-            //     @media(max-width: 768px){
-            //         width: 21px;
-            //         height: 21px;
-            //         padding:3px;
-            //         font-size: 10px;
-            //         left:49px;
-            //     }
-            // }
             .group-circle{
                 text-transform: uppercase;
                 text-align: center;
@@ -338,6 +317,7 @@ html,body{
                 .chat-group-name{
                     font-size: 36px;
                     font-weight: 600;
+                    .make-ellipsis-text();
                     @media(max-width: 768px){
                         font-size: 25px;
                     }
@@ -353,112 +333,7 @@ html,body{
 
     }
 }
-// #chat-page{
-//     .frd-div{
-//         width:100%;
-//         border-bottom: 2px solid @dark-chocolate;
-//     }
-//     .back-arrow{
-//         width:3%;
-//         @media(max-width:768px){
-//             width:10%;
-//         }
-//     }
-//     .frd-pic{
-//         width:5%;
-//         border-radius: 100%;
-//         left:50%;
-//         @media(max-width:768px){
-//             width:15%;
-//         }
-//     }
-//     .frd-name{
-//         font-size: 17px;
-//         font-weight: 700;
-//         text-align: center;
-//         color:@dark-chocolate;
-//         @media(max-width:768px){
-//             font-size: 14px;
-//         }
-//     }
-//     .chat-div{
-//         width:100%;
-//         border-bottom: 2px solid @dark-chocolate;
-//         padding-bottom: 10px;
-//         &::-webkit-scrollbar{
-//             display: none;
-//         }
-//     }
-//     .scrollable{
-//         height: 370px; /* or any value */
-//         overflow-y: auto;
-//         // overflow-x: auto;
-//     }
-//     .frd-chat-pic{
-//         width:5%;
-//         border-radius: 100%;
-//         margin-top: 1.5em;
-//         margin-left: 15px;
-//         @media(max-width: 768px){
-//             width:12%;
-//         }
-//     }
-//     .frd-balloon,.self-balloon{
-//         width:200px;
-//         color:white;
-//         background-color: @dark-chocolate;
-//         font-size: 17px;
-//         border-radius: 10px;
-//         padding: 5px;
-//         margin-top: 1em;
-//         position: relative;
-//         // margin-bottom: 1em;
-//         // bottom:50px;
-//         @media(max-width: 768){
-//             font-size: 12px;
-//             width:170px;
-//         }
-//     }
-//     .frd-balloon{
-//      left:7%;
-//      bottom: 75px;
-//      @media(max-width: 768px){
-//          left:18%;
-//      }
-//     }
-//     .self-balloon{
-//         position: relative;
-//         left: 80%;
-//         @media(max-width:768px){
-//             left:40%;
-//         }
-//     }
-//     .type-div{
-//         width: 100%;
-//         margin-top: 1em;
-//         // position: fixed;
-//         // top:87%;
-//         @media(max-width: 768px){
-//             top:90%;
-//         }
-//         input{
-//             width: 80%;
-//             @media(max-width:768px){
-//                 width:70%;
-//                 // top:70%;
-//             }
-//         }
-//         .send-btn{
-//             color: @dark-chocolate;
-//             background-color: @white;
-//             border: 1px solid @dark-chocolate;
-//             padding-top: 1px;
-//             padding-bottom: 1px;
-//             margin-left: 1em;
-//         }
-//     }
-//
-// }
+
 #chat-room{
     margin-top: 16px;
     border: 3px solid @dark-chocolate;
@@ -476,6 +351,7 @@ html,body{
             font-size: 23px;
             top:7%;
             left: 2%;
+            cursor: pointer;
             @media(max-width: 768px){
                 font-size: 14px;
                 top:8%;
@@ -508,7 +384,8 @@ html,body{
     }
     .chat-room-message{
         // height:50vh;
-        height:calc(75vh-7px);
+        // height:calc(75vh-7px);
+        height: 70vh;
         overflow-y: scroll;
 
         .message{

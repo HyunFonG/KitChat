@@ -34,7 +34,8 @@ block content
                         div.group-circle.center-block
                             span(ng-bind="group.name | limitTo:2")
                         h3.group-name 
-                            span(ng-bind="(group.name | limitTo:5) + '...'")
+                            //- span(ng-bind="(group.name | limitTo:5) + '...'")
+                            span(ng-bind="group.name")
                         //- div.group-circle.center-block !{JSON.stringify(group.name).substr(1,2)}
                         //- h3.group-name !{(group.name).substr(0,10)+'...'}
         div.col-sm-12.col-xs-12#chat.tab-pane.fade(ng-controller="messageListCtrl")
