@@ -26,6 +26,126 @@ seeder.connect(dbConfig.url,function(){
 						'group':'OK',
 						'message': 'เอา',
 						'create_at': new Date("1994-11-30")
+					},
+          {
+						'username':'aa',
+						'group':'OK',
+						'message': 'เอากับกูมั้ย',
+						'create_at': new Date("1994-11-29")
+					},
+					{
+						'username':'bb',
+						'group':'OK',
+						'message': 'เอา',
+						'create_at': new Date("1994-11-30")
+					},
+          {
+						'username':'aa',
+						'group':'OK',
+						'message': 'เอากับกูมั้ย',
+						'create_at': new Date("1994-11-29")
+					},
+					{
+						'username':'bb',
+						'group':'OK',
+						'message': 'เอา',
+						'create_at': new Date("1994-11-30")
+					},
+          {
+						'username':'aa',
+						'group':'OK',
+						'message': 'เอากับกูมั้ย',
+						'create_at': new Date("1994-11-29")
+					},
+					{
+						'username':'bb',
+						'group':'OK',
+						'message': 'เอา',
+						'create_at': new Date("1994-11-30")
+					},
+          {
+						'username':'aa',
+						'group':'OK',
+						'message': 'เอากับกูมั้ย',
+						'create_at': new Date("1994-11-29")
+					},
+					{
+						'username':'bb',
+						'group':'OK',
+						'message': 'เอา',
+						'create_at': new Date("1994-11-30")
+					},
+          {
+						'username':'aa',
+						'group':'OK',
+						'message': 'เอากับกูมั้ย',
+						'create_at': new Date("1994-11-29")
+					},
+					{
+						'username':'bb',
+						'group':'OK',
+						'message': 'เอา',
+						'create_at': new Date("1994-11-30")
+					},
+          {
+						'username':'aa',
+						'group':'OK',
+						'message': 'เอากับกูมั้ย',
+						'create_at': new Date("1994-11-29")
+					},
+					{
+						'username':'bb',
+						'group':'OK',
+						'message': 'เอา',
+						'create_at': new Date("1994-11-30")
+					},
+          {
+						'username':'aa',
+						'group':'OK',
+						'message': 'เอากับกูมั้ย',
+						'create_at': new Date("1994-11-29")
+					},
+					{
+						'username':'bb',
+						'group':'OK',
+						'message': 'เอา',
+						'create_at': new Date("1994-11-30")
+					},
+          {
+						'username':'aa',
+						'group':'OK',
+						'message': 'เอากับกูมั้ย',
+						'create_at': new Date("1994-11-29")
+					},
+					{
+						'username':'bb',
+						'group':'OK',
+						'message': 'เอา',
+						'create_at': new Date("1994-11-30")
+					},
+          {
+						'username':'aa',
+						'group':'OK',
+						'message': 'เอากับกูมั้ย',
+						'create_at': new Date("1994-11-29")
+					},
+					{
+						'username':'bb',
+						'group':'OK',
+						'message': 'เอา',
+						'create_at': new Date("1994-11-30")
+					},
+          {
+						'username':'aa',
+						'group':'OK',
+						'message': 'เอากับกูมั้ย',
+						'create_at': new Date("1994-11-29")
+					},
+					{
+						'username':'bb',
+						'group':'OK',
+						'message': 'เอา',
+						'create_at': new Date("1994-11-30")
 					}
 				]
 			},
