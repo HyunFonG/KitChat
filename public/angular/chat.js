@@ -75,6 +75,7 @@ chat.controller('messageListCtrl',function($scope,$rootScope,$location){
 });
 
 chat.controller('chatRoomCtrl',function($scope,$location,$routeParams,$http,$timeout){
+    var socket = io.connect();
     $scope.navigateBack = function(){
         console.log("I'am going back");
         //TODO Make navigate to chat room with specific id (or name somehow...)
@@ -84,14 +85,14 @@ chat.controller('chatRoomCtrl',function($scope,$location,$routeParams,$http,$tim
 
     $http.post('/loadMessage',{groupname:$routeParams.groupname})
     .success(function(data,status){
-        console.log(data);
         $scope.messagesList = data['message'];
         $scope.currentUser = data['cur_user'];
+        console.log($scope.messagesList);
         $timeout(function(){
             var objDiv = document.getElementById("to-scroll");
             objDiv.scrollTop = objDiv.scrollHeight;
         },0,false);
-
+        socket.emit('subscribe',{"room":$routeParams.groupname});
     });
 
     $scope.getLeftRightClass = function(index,messageList,currentUser,mode){
@@ -107,4 +108,24 @@ chat.controller('chatRoomCtrl',function($scope,$location,$routeParams,$http,$tim
             return "message-right";
         }
     }
+
+    $scope.sendMessage = function(){
+        // console.log("TO SEND:"+$scope.messageToSend);
+        // var io = require('socket.io');
+        socket.emit('chat', {"username":$scope.currentUser,"message":$scope.messageToSend,"group":$routeParams.groupname});
+    }
+    socket.on('message', function (data) {
+        console.log("RECEIVE FROM SOCKET");
+        console.log(data);
+        // console.log($scope.messagesList);
+        $scope.messagesList.push({"username":data.username,"message":data.message,"create_at":data.create_at,"group":$routeParams.groupname});
+        console.log("INSERT TO SCOPE");
+        console.log($scope.messagesList);
+        $scope.$apply();
+        $timeout(function(){
+            var objDiv = document.getElementById("to-scroll");
+            objDiv.scrollTop = objDiv.scrollHeight;
+        },0,false);
+    });
+
 })
