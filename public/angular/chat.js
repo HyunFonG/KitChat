@@ -25,6 +25,7 @@ chat.run(function($rootScope,$http){
         console.log(data);
         console.log($rootScope.username);
         if($rootScope.username != data.create_by){
+            toastr["info"]("New group just created!")
             $rootScope.unjoinedgroups.push({"name":data.group});
             $rootScope.$apply();
         }
