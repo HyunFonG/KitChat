@@ -81,4 +81,4 @@ io.on('connection',function (socket) {
 		console.dir(data);
 		socket.broadcast.emit('newgroup',{"group":data.group,"create_by":data.sender_username});
 	});
-})
+});
