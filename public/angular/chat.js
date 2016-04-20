@@ -66,6 +66,7 @@ chat.controller('addGroupCtrl',function($scope,$rootScope,$http){
             toastr["success"]($scope.groupname+" has been created!", "Group Created!");
             $rootScope.username = data.sender_username;
             socket.emit('newgroup',{"group":$scope.groupname,"sender_username":data.sender_username});
+            $scope.groupname = null;
         });
     }
 });
@@ -139,8 +140,10 @@ chat.controller('chatRoomCtrl',function($scope,$location,$routeParams,$http,$tim
     $scope.sendMessage = function(){
         // console.log("TO SEND:"+$scope.messageToSend);
         // var io = require('socket.io');
-        socket.emit('chat', {"username":$scope.currentUser,"message":$scope.messageToSend,"group":$routeParams.groupname});
-        $scope.messageToSend = null;
+        if($scope.messageToSend != null){
+            socket.emit('chat', {"username":$scope.currentUser,"message":$scope.messageToSend,"group":$routeParams.groupname});
+            $scope.messageToSend = null;
+        }
     }
     socket.on('message', function (data) {
         console.log("RECEIVE FROM SOCKET");
