@@ -108,6 +108,11 @@ chat.controller('chatRoomCtrl',function($scope,$location,$routeParams,$http,$tim
         socket.emit('unsubscribe',{"room":$routeParams.groupname});
         $location.path('/list');
     }
+    $scope.leaveGroup=function(){
+        console.log("I'am leaving group");
+        socket.emit('unsubscribe',{"room":$routeParams.groupname});
+        $location.path('/list');
+    }
 
     $scope.roomTitle = " "+$routeParams.groupname;
 

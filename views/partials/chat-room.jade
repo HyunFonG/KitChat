@@ -4,6 +4,9 @@ div#chat-room
             i.fa.fa-chevron-left(aria-hidden="true")
             span.back-text &nbspBack
         span.room-name(ng-bind="roomTitle")
+        div.leave-gr-btn(ng-click="leaveGroup()")
+            span.leave-gr-text Leave group&nbsp
+            i.fa.fa-sign-out(aria-hidden="true")
     div.chat-room-message#to-scroll
         div.message(ng-repeat="message in messagesList",ng-class="getLeftRightClass($index,messagesList,currentUser,0)")
             p.sender-name(ng-show="message.username != currentUser") {{message.username}}
