@@ -76,7 +76,7 @@ module.exports = function (passport) {
 	router.get('/api/user',isAuthenticated,function(req,res){
 		res.json({"username":req.user.username});
 	})
-	
+
 	router.get('/logout',isAuthenticated,function(req,res){
 		req.logout();
 		res.redirect('/login');
@@ -115,6 +115,11 @@ module.exports = function (passport) {
 	router.post('/joininggroup',isAuthenticated,function(req,res){
 		var current_time = (new Date()).getTime();
 		UserJoinedGroup({'username':req.user.username,group:req.body.group,'joined_at':current_time}).save();
+		res.redirect('/chat');
+	});
+
+	router.post('/leavinggroup',isAuthenticated,function(req,res){
+		UserJoinedGroup({'username':req.user.username,group:req.body.group}).remove();
 		res.redirect('/chat');
 	});
 
