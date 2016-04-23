@@ -101,7 +101,7 @@ chat.controller('messageListCtrl',function($scope,$rootScope,$location){
     }
 });
 
-chat.controller('chatRoomCtrl',function($scope,$location,$routeParams,$http,$timeout){
+chat.controller('chatRoomCtrl',function($scope,$location,$routeParams,$http,$timeout,$rootScope){
     var socket = io.connect();
     $scope.navigateBack = function(){
         console.log("I'am going back");
@@ -110,7 +110,12 @@ chat.controller('chatRoomCtrl',function($scope,$location,$routeParams,$http,$tim
     }
     $scope.leaveGroup=function(){
         console.log("I'am leaving group");
-        socket.emit('unsubscribe',{"room":$routeParams.groupname});
+        $http.post('/leavinggroup',{group:$routeParams.groupname})
+        .success(function(data,status){
+            // $rootScope.unjoinedgroups.push({"name":$routeParams.groupname});
+            console.log(data);
+
+        });
         $location.path('/list');
     }
 
