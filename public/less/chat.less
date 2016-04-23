@@ -149,7 +149,7 @@ html,body{
 }
 #add-group-modal{
     .modal-header{
-        color: @dark-chocolate;
+        color: @main-theme;
         background-color: @white;
         border-radius: 5px;
     }
@@ -165,7 +165,7 @@ html,body{
     /* LABEL ======================================= */
 
     label{
-      color:@dark-chocolate;
+      color:@main-theme;
       font-size:18px;
       font-weight:normal;
       position:absolute;
@@ -181,7 +181,7 @@ html,body{
     input:focus ~ label, input:valid ~ label{
       top:-20px;
       font-size:14px;
-      color:@dark-chocolate;
+      color:@main-theme;
     }
 
     /* BOTTOM BARS ================================= */
@@ -192,7 +192,7 @@ html,body{
       width:0;
       bottom:1px;
       position:absolute;
-      background:@dark-chocolate /*#5264AE*/;
+      background:@main-theme /*#5264AE*/;
       transition:0.2s ease all;
       -moz-transition:0.2s ease all;
       -webkit-transition:0.2s ease all;
@@ -241,20 +241,20 @@ html,body{
 
     /* ANIMATIONS ================ */
     @-webkit-keyframes inputHighlighter {
-	     from { background: @dark-chocolate/*#5264AE*/; }
+	     from { background: @main-theme/*#5264AE*/; }
        to 	{ width:0; background:transparent; }
      }
      @-moz-keyframes inputHighlighter {
-	      from { background:@dark-chocolate/*#5264AE*/; }
+	      from { background:@main-theme/*#5264AE*/; }
         to 	{ width:0; background:transparent; }
       }
       @keyframes inputHighlighter {
-	       from { background:@dark-chocolate/*#5264AE*/; }
+	       from { background:@main-theme/*#5264AE*/; }
          to 	{ width:0; background:transparent; }
        }
        .modal-footer{
          .btn:nth-child(1){
-          //  border:1px solid @dark-chocolate;
+          //  border:1px solid @main-theme;
            color: red;
            background-color: @white;
            border:0px;
@@ -265,15 +265,15 @@ html,body{
           //  border:1px solid red;
          }
          .btn:nth-child(2){
-          //  border:1px solid @dark-chocolate;
-           color: @dark-chocolate;
+          //  border:1px solid @main-theme;
+           color: @main-theme;
            background-color: @white;
            border:0px;
          }
          .btn:nth-child(2):hover{
            color: @white;
-           background-color: @dark-chocolate;
-          //  border:1px solid @dark-chocolate;
+           background-color: @main-theme;
+          //  border:1px solid @main-theme;
          }
        }
 }
@@ -340,7 +340,7 @@ html,body{
 
 #chat-room{
     margin-top: 16px;
-    border: 3px solid @dark-chocolate;
+    border: 3px solid @main-theme;
     height: 87vh;
     width: 100%;
     .chat-room-title{
@@ -348,7 +348,7 @@ html,body{
         padding-top: 19px;
         padding-bottom: 19px;
         text-align: center;
-        background-color: @dark-chocolate;
+        background-color: @main-theme;
         color:@white;
         // height: 95px;;
         .back-btn{
@@ -444,7 +444,7 @@ html,body{
             text-align: right;
             .message-right{
                 text-align: right;
-                background-color: @dark-chocolate;
+                background-color: @main-theme;
                 display: inline-block;
                 max-width: 50%;
                 border-radius: 10px;
@@ -479,7 +479,7 @@ html,body{
                 // margin-left: 5px;
                 // margin-right: 6px;
                 // height:42px;
-                // border-color: @dark-chocolate;
+                // border-color: @main-theme;
                 // border-radius: 0px;
                 // @media(max-width: 768px){
                 //     width: 78%;
@@ -517,7 +517,7 @@ html,body{
 #logout-confirmation{
     .modal-footer{
       .btn:nth-child(2){
-       //  border:1px solid @dark-chocolate;
+       //  border:1px solid @main-theme;
         color: red;
         background-color: @white;
         border:0px;
@@ -528,15 +528,15 @@ html,body{
        //  border:1px solid red;
       }
       .btn:nth-child(1){
-       //  border:1px solid @dark-chocolate;
-        color: @dark-chocolate;
+       //  border:1px solid @main-theme;
+        color: @main-theme;
         background-color: @white;
         border:0px;
       }
       .btn:nth-child(1):hover{
         color: @white;
-        background-color: @dark-chocolate;
-       //  border:1px solid @dark-chocolate;
+        background-color: @main-theme;
+       //  border:1px solid @main-theme;
       }
     }
 }

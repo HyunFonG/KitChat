@@ -10,7 +10,9 @@ div#chat-room
     div.chat-room-message#to-scroll
         div.message(ng-repeat="message in messagesList",ng-class="getLeftRightClass($index,messagesList,currentUser,0)")
             p.sender-name(ng-show="message.username != currentUser") {{message.username}}
+            //p(ng-show="message.username == currentUser") {{message.create_at}}
             p(ng-class="getLeftRightClass($index,messagesList,currentUser,1)") {{message.message}}
+            p(ng-show="message.username == currentUser") {{message.create_at}}
         //- div.message.message-leftzone
         //-     p.sender-name FongKak
         //-     p.message-left สวัสดี งานเยอะจังวะอีดอกอันนี้แม้งยาวมากนี่พูดเลย
