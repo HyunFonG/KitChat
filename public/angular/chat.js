@@ -152,8 +152,12 @@ chat.controller('chatRoomCtrl',function($scope,$location,$routeParams,$http,$tim
     }
     socket.on('message', function (data) {
         console.log("RECEIVE FROM SOCKET");
-        console.log(data);
+        // console.log(data);
         // console.log($scope.messagesList);
+        // var date = data.create_at;
+        // var dateString = date.getDay() + "/" + date.getMonth() + "/" + date.getFullYear();
+        // console.log(dateString);
+        console.log(data.create_at);
         $scope.messagesList.push({"username":data.username,"message":data.message,"create_at":data.create_at,"group":$routeParams.groupname});
         console.log("INSERT TO SCOPE");
         console.log($scope.messagesList);

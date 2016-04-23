@@ -57,8 +57,12 @@ io.on('connection',function (socket) {
 	// body...
 	socket.on('chat', function(data) {
         // แสดงข้อมูลที่ได้ ออกมาทาง console
-        console.dir(data);
-        var current_time = (new Date()).getTime();
+        // console.dir(data);
+        var current_time = (new Date());
+		var disp_time = current_time;
+		current_time = current_time.getTime();
+		console.log("DEBUG")
+		console.dir(disp_time);
 		var toSend = {username: data.username, group: data.group, message: data.message, create_at : current_time };
         ChatMessage(toSend).save();
         io.to(data.group).emit('message',toSend);

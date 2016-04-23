@@ -12,7 +12,7 @@ div#chat-room
             p.sender-name(ng-show="message.username != currentUser") {{message.username}}
             //p(ng-show="message.username == currentUser") {{message.create_at}}
             p(ng-class="getLeftRightClass($index,messagesList,currentUser,1)") {{message.message}}
-            p {{message.create_at}}
+            p {{message.create_at | date:'MM/dd/yyyy HH:mm:ss a'}}
         //- div.message.message-leftzone
         //-     p.sender-name FongKak
         //-     p.message-left สวัสดี งานเยอะจังวะอีดอกอันนี้แม้งยาวมากนี่พูดเลย
