@@ -119,9 +119,9 @@ module.exports = function (passport) {
 	});
 
 	router.post('/leavinggroup',isAuthenticated,function(req,res){
-		UserJoinedGroup({'username':req.user.username,group:req.body.group}).remove();
-		// res.redirect('/chat');
-		res.json({'status':'REMOVED'});
+		UserJoinedGroup.remove({'username':req.user.username,group:req.body.group},function(err){
+			if(!err) res.json({'status':'REMOVED'});
+		});
 	});
 
 	return router;
