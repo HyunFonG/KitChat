@@ -29,7 +29,7 @@ module.exports = function (passport) {
 	router.route('/login')
 		.get(function(req,res){
 			res.render('auth/login',{message:req.flash('message')});
-			console.log("MESSAGE",req.flash('message'));
+			// console.log("MESSAGE",req.flash('message'));
 		})
 		.post(passport.authenticate('login', {
 			successRedirect: '/chat',
@@ -38,7 +38,7 @@ module.exports = function (passport) {
 		}));
 	router.route('/register')
 		.get(function(req,res){
-			res.render('auth/register');
+			res.render('auth/register',{message:req.flash('message')});
 		})
 		.post(passport.authenticate('signup', {
 			successRedirect: '/login',
@@ -52,7 +52,7 @@ module.exports = function (passport) {
 
 	router.get('/api/group',isAuthenticated,function(req,res){
 		Group.find({},function(err,group){
-			console.log('-------------');
+			// console.log('-------------');
 			UserJoinedGroup.find({'username':req.user.username},function(err,joinedgroup){
 				var joined_group = [];
 				var unjoinedgroup = [];
@@ -64,10 +64,10 @@ module.exports = function (passport) {
 						unjoinedgroup.push(group[i]);
 					}
 				}
-				console.log('--- unjoinedgroup');
-				console.log(unjoinedgroup);
-				console.log('--- joinedgroup');
-				console.log(joinedgroup);
+				// console.log('--- unjoinedgroup');
+				// console.log(unjoinedgroup);
+				// console.log('--- joinedgroup');
+				// console.log(joinedgroup);
 				res.json({'unjoinedgroup':unjoinedgroup,'joinedgroup':joinedgroup});
 			});
 		});
@@ -83,18 +83,18 @@ module.exports = function (passport) {
 	});
 
 	router.post('/createGroup',isAuthenticated,function(req,res){
-		console.log("DEBUG");
-		console.log(req.body.groupname);
-		console.log("END DEBUG");
+		// console.log("DEBUG");
+		// console.log(req.body.groupname);
+		// console.log("END DEBUG");
 		Group.findOne({ 'name' :  req.body.groupname }, function(err, user) {
 				// In case of any error, return using the done method
 				if (err){
-					console.log('Error in SignUp: '+err);
+					// console.log('Error in SignUp: '+err);
 					return done(err);
 				}
 				// already exists
 				if (user) {
-					console.log('Group already exists');
+					// console.log('Group already exists');
 					return done(null, false, req.flash('message','Group Already Exists'));
 				} else {
 					Group({name : req.body.groupname}).save();

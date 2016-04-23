@@ -7,10 +7,14 @@ block css
     link(rel='stylesheet',href='css/auth/login.css')
 
 block content
+    - var registerResponse = {message}
     div.box
         div.kitchat-branding.center-block
             img(id="kitchat-logo" src="img/Kitchat_Trans.png")
-            p.welcoming-text New user? Please register first.
+            if registerResponse.message == ""
+                p.welcoming-text New user? Please register first.
+            else
+                p.welcoming-text User Exist! Please use other username.
             form.login-form(method = "post", action = "/register")
                 div.row
                     input(id="username",name="username",placeholder="Username",type="text")

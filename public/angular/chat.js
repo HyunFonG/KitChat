@@ -15,15 +15,15 @@ chat.run(function($rootScope,$http){
     var socket = io.connect();
     $http.get("/api/user")
     .success(function(data, status) {
-        console.log("GET /API/USER");
-        console.log(data);
+        // console.log("GET /API/USER");
+        // console.log(data);
         // console.log($rootScope.groups);
         $rootScope.username = data.username;
     });
     socket.on('newgroup',function(data){
-        console.log("RECEIVE FROM BROADCAST");
-        console.log(data);
-        console.log($rootScope.username);
+        // console.log("RECEIVE FROM BROADCAST");
+        // console.log(data);
+        // console.log($rootScope.username);
         if($rootScope.username != data.create_by){
             toastr["info"]("New group just created!")
             $rootScope.unjoinedgroups.push({"name":data.group});
@@ -55,11 +55,11 @@ chat.config(['cfpLoadingBarProvider', function(cfpLoadingBarProvider) {
 chat.controller('addGroupCtrl',function($scope,$rootScope,$http){
     var socket = io.connect();
     $scope.createGroup = function(){
-        console.log("HELLO");
+        // console.log("HELLO");
         $http.post("/createGroup", {groupname:$scope.groupname})
         .success(function(data, status) {
-            console.log("DATA");
-            console.log(data);
+            // console.log("DATA");
+            // console.log(data);
             // console.log($rootScope.groups);
             $rootScope.unjoinedgroups.push({"name":$scope.groupname});
             $scope.dismiss();
@@ -79,10 +79,10 @@ chat.controller('groupListCtrl',function($scope,$rootScope,$http){
     });
 
     $scope.joinGroup = function(groupname,index){
-        console.log(groupname);
+        // console.log(groupname);
         $http.post("/joininggroup",{group:groupname})
         .success(function(data,status){
-            console.log("INDEX :"+index);
+            // console.log("INDEX :"+index);
             $rootScope.joinedgroups.push({"group":groupname});
             // var groupElem = angular.element( document.querySelector('#box-'+groupname));
             // groupElem.remove();
@@ -95,8 +95,8 @@ chat.controller('groupListCtrl',function($scope,$rootScope,$http){
 
 chat.controller('messageListCtrl',function($scope,$rootScope,$location){
     $scope.navigateToChatRoom = function(route_path,index){
-        console.log("Hello I'am Navigate to Chat Room");
-        console.log(index);
+        // console.log("Hello I'am Navigate to Chat Room");
+        // console.log(index);
         $rootScope.chatRoomIndex = index;
         //TODO Make navigate to chat room with specific id (or name somehow...)
         $location.path(route_path);
@@ -106,19 +106,19 @@ chat.controller('messageListCtrl',function($scope,$rootScope,$location){
 chat.controller('chatRoomCtrl',function($scope,$location,$routeParams,$http,$timeout,$rootScope){
     var socket = io.connect();
     $scope.navigateBack = function(){
-        console.log("I'am going back");
+        // console.log("I'am going back");
         socket.emit('unsubscribe',{"room":$routeParams.groupname});
         $location.path('/list');
     }
     $scope.leaveGroup=function(){
-        console.log("I'am leaving group");
+        // console.log("I'am leaving group");
         var group_name = $routeParams.groupname;
         $http.post('/leavinggroup',{group:$routeParams.groupname})
         .success(function(data,status){
             // $rootScope.unjoinedgroups.push({"name":$routeParams.groupname});
-            console.log("LEAVE INDEX");
+            // console.log("LEAVE INDEX");
             $rootScope.unjoinedgroups.push({"name":group_name});
-            console.log($rootScope.joinedgroups[$rootScope.chatRoomIndex]);
+            // console.log($rootScope.joinedgroups[$rootScope.chatRoomIndex]);
             $rootScope.joinedgroups.splice($rootScope.chatRoomIndex,1);
         });
         $location.path('/list');
@@ -130,7 +130,7 @@ chat.controller('chatRoomCtrl',function($scope,$location,$routeParams,$http,$tim
     .success(function(data,status){
         $scope.messagesList = data['message'];
         $scope.currentUser = data['cur_user'];
-        console.log($scope.messagesList);
+        // console.log($scope.messagesList);
         $timeout(function(){
             var objDiv = document.getElementById("to-scroll");
             objDiv.scrollTop = objDiv.scrollHeight;
@@ -161,16 +161,16 @@ chat.controller('chatRoomCtrl',function($scope,$location,$routeParams,$http,$tim
         }
     }
     socket.on('message', function (data) {
-        console.log("RECEIVE FROM SOCKET");
+        // console.log("RECEIVE FROM SOCKET");
         // console.log(data);
         // console.log($scope.messagesList);
         // var date = data.create_at;
         // var dateString = date.getDay() + "/" + date.getMonth() + "/" + date.getFullYear();
         // console.log(dateString);
-        console.log(data.create_at);
+        // console.log(data.create_at);
         $scope.messagesList.push({"username":data.username,"message":data.message,"create_at":data.create_at,"group":$routeParams.groupname});
-        console.log("INSERT TO SCOPE");
-        console.log($scope.messagesList);
+        // console.log("INSERT TO SCOPE");
+        // console.log($scope.messagesList);
         $scope.$apply();
         $timeout(function(){
             var objDiv = document.getElementById("to-scroll");

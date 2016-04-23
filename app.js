@@ -20,7 +20,7 @@ var ChatMessage = require('./model/ChatMessage.js');
 
 var port = 8081;
 var server = app.listen(port,function(){
-	console.log('Listening on port: ' + port);
+	console.log('Starting KitChat on port: ' + port);
 });
 
 // ---------------- Express Setting ------------------
@@ -61,8 +61,8 @@ io.on('connection',function (socket) {
         var current_time = (new Date());
 		var disp_time = current_time;
 		current_time = current_time.getTime();
-		console.log("DEBUG")
-		console.dir(disp_time);
+		// console.log("DEBUG")
+		// console.dir(disp_time);
 		var toSend = {username: data.username, group: data.group, message: data.message, create_at : current_time };
         ChatMessage(toSend).save();
         io.to(data.group).emit('message',toSend);
@@ -71,18 +71,18 @@ io.on('connection',function (socket) {
   	});
 
 	socket.on('subscribe',function(data){
-		console.log("SUBSCRIBE");
-		console.dir(data);
+		// console.log("SUBSCRIBE");
+		// console.dir(data);
 		socket.join(data.room);
 	});
 	socket.on('unsubscribe',function(data){
-		console.log("UNSUBSCRIBE");
-		console.dir(data);
+		// console.log("UNSUBSCRIBE");
+		// console.dir(data);
 		socket.leave(data.room);
 	});
 	socket.on('newgroup',function(data){
-		console.log("NEWGROUP");
-		console.dir(data);
+		// console.log("NEWGROUP");
+		// console.dir(data);
 		socket.broadcast.emit('newgroup',{"group":data.group,"create_by":data.sender_username});
 	});
 });
