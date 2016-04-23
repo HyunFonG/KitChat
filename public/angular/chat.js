@@ -94,8 +94,10 @@ chat.controller('groupListCtrl',function($scope,$rootScope,$http){
 });
 
 chat.controller('messageListCtrl',function($scope,$rootScope,$location){
-    $scope.navigateToChatRoom = function(route_path){
+    $scope.navigateToChatRoom = function(route_path,index){
         console.log("Hello I'am Navigate to Chat Room");
+        console.log(index);
+        $rootScope.chatRoomIndex = index;
         //TODO Make navigate to chat room with specific id (or name somehow...)
         $location.path(route_path);
     }
@@ -110,11 +112,14 @@ chat.controller('chatRoomCtrl',function($scope,$location,$routeParams,$http,$tim
     }
     $scope.leaveGroup=function(){
         console.log("I'am leaving group");
+        var group_name = $routeParams.groupname;
         $http.post('/leavinggroup',{group:$routeParams.groupname})
         .success(function(data,status){
             // $rootScope.unjoinedgroups.push({"name":$routeParams.groupname});
-            console.log(data);
-
+            console.log("LEAVE INDEX");
+            $rootScope.unjoinedgroups.push({"name":group_name});
+            console.log($rootScope.joinedgroups[$rootScope.chatRoomIndex]);
+            $rootScope.joinedgroups.splice($rootScope.chatRoomIndex,1);
         });
         $location.path('/list');
     }
