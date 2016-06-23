@@ -1,5 +1,5 @@
 doctype html
-html(ng-app="chat")
+html(ng-app="kitChat")
     head(lang='th')
         meta(charset='utf-8')
         block title
@@ -19,8 +19,11 @@ html(ng-app="chat")
         script(src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js",integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS",crossorigin="anonymous")
         script(src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular.min.js")
         script(src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular-route.js")
-        script(src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular-animate.js")
+        //- script(src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular-animate.js")
         script(src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js")
         script(src="https://cdnjs.cloudflare.com/ajax/libs/angular-loading-bar/0.9.0/loading-bar.min.js")
         script(src="https://cdn.socket.io/socket.io-1.4.5.js")
+        script(src="js/modules/app.js")
+        script(src="js/models/group.js")
+        script(src="js/controllers/groupController.js")
         block js
