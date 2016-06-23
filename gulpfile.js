@@ -3,6 +3,7 @@ var less = require('gulp-less');
 var path = require('path');
 var minifyCSS = require('gulp-minify-css');
 var browserSync = require('browser-sync');
+var ts = require('gulp-typescript');
 
 gulp.task('browser-sync', function() {
     browserSync({
@@ -18,6 +19,12 @@ gulp.task('less',function(){
         }))
         .pipe(minifyCSS())
         .pipe(gulp.dest('./public/css'));
+});
+
+gulp.task('tsc', function () {
+    return gulp.src('./js/**/*.ts')
+        .pipe(ts())
+        .pipe(gulp.dest('./public/js'));
 });
 
 gulp.task('default', ['less','browser-sync'], function() {
