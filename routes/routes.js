@@ -8,7 +8,7 @@ var isAuthenticated = function (req, res, next) {
 		if (req.isAuthenticated())
 			return next();
 		res.redirect('/login');
-}
+};
 
 module.exports = function (passport) {
 
@@ -47,7 +47,7 @@ module.exports = function (passport) {
 		}));
 
 	router.get('/chat',isAuthenticated,function(req,res){
-		res.render('chat');
+		res.render('index');
 	});
 
 	router.get('/api/group',isAuthenticated,function(req,res){
@@ -75,7 +75,7 @@ module.exports = function (passport) {
 
 	router.get('/api/user',isAuthenticated,function(req,res){
 		res.json({"username":req.user.username});
-	})
+	});
 
 	router.get('/logout',isAuthenticated,function(req,res){
 		req.logout();
@@ -125,4 +125,4 @@ module.exports = function (passport) {
 	});
 
 	return router;
-}
+};
