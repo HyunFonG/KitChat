@@ -20,9 +20,10 @@ appModule.config(['$routeProvider', function ($routeProvider) {
             redirect: '/'
         });
     }]);
+appModule.constant('Config', Config.Default);
 appModule.controller('AppController', ['$scope', '$location',
     function ($scope, $location) { return new KitChat.Controllers.AppController($scope, $location); }
 ]);
-appModule.controller('UnjoinedGroupController', ['$scope', '$http',
-    function ($scope, $http) { return new KitChat.Controllers.UnjoinedGroupController($scope, $http); }
+appModule.controller('UnjoinedGroupController', ['$scope', '$http', 'Config',
+    function ($scope, $http, Config) { return new KitChat.Controllers.UnjoinedGroupController($scope, $http, Config); }
 ]);

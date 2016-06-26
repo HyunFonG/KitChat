@@ -25,11 +25,14 @@ appModule.config(['$routeProvider', ($routeProvider) => {
         });
 }]);
 
+// Initiate Constant Value
+appModule.constant('Config', Config.Default);
+
 // Initiate Controller
 appModule.controller('AppController',['$scope','$location',
     ($scope,$location) => new KitChat.Controllers.AppController($scope,$location)
 ]);
 
-appModule.controller('UnjoinedGroupController',['$scope','$http',
-    ($scope,$http) => new KitChat.Controllers.UnjoinedGroupController($scope,$http)
+appModule.controller('UnjoinedGroupController',['$scope','$http','Config',
+    ($scope,$http,Config) => new KitChat.Controllers.UnjoinedGroupController($scope,$http,Config)
 ]);

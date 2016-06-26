@@ -4,10 +4,11 @@ var KitChat;
     (function (Controllers) {
         var UnjoinedGroup = Model.UnjoinedGroup;
         var UnjoinedGroupController = (function () {
-            function UnjoinedGroupController($scope, $http) {
+            function UnjoinedGroupController($scope, $http, config) {
                 this.scope = $scope;
                 this.http = $http;
                 this.unjoinedGroups = new UnjoinedGroup(this.http);
+                this.config = config;
             }
             UnjoinedGroupController.prototype.createGroup = function () {
                 var _this = this;
@@ -17,10 +18,11 @@ var KitChat;
                 this.http({
                     method: 'POST',
                     data: payload,
-                    url: '/api/group/create'
+                    url: this.config.createGroupURL
                 }).then(function (result) {
                     console.log(result);
                     _this.unjoinedGroups.addGroup(_this.scope['newGroupName']);
+                    _this.scope.dismiss();
                 }, function (error) {
                     console.log(error);
                 });
@@ -33,7 +35,7 @@ var KitChat;
                 this.http({
                     method: 'POST',
                     data: payload,
-                    url: '/api/group/join'
+                    url: this.config.joinGroupURL
                 }).then(function (result) {
                     console.log(result);
                     _this.unjoinedGroups.remove(idx);

@@ -6,11 +6,13 @@ module KitChat.Controllers {
         scope: ng.IScope;
         http: ng.IHttpService;
         unjoinedGroups: UnjoinedGroup;
+        config: Config;
 
-        constructor($scope: ng.IScope,$http: ng.IHttpService) {
+        constructor($scope: ng.IScope,$http: ng.IHttpService,config:Config) {
             this.scope = $scope;
             this.http = $http;
             this.unjoinedGroups = new UnjoinedGroup(this.http);
+            this.config = config;
         }
 
         public createGroup(){
@@ -20,11 +22,12 @@ module KitChat.Controllers {
             this.http({
                 method: 'POST',
                 data: payload,
-                url: '/api/group/create'
+                url: this.config.createGroupURL
             }).then(
                 (result) => {
                     console.log(result);
                     this.unjoinedGroups.addGroup(this.scope['newGroupName']);
+                    this.scope.dismiss();
                 },
                 (error) => {
                     console.log(error);
@@ -39,7 +42,7 @@ module KitChat.Controllers {
             this.http({
                 method: 'POST',
                 data: payload,
-                url: '/api/group/join'
+                url: this.config.joinGroupURL
             }).then(
                 (result) => {
                     console.log(result);
