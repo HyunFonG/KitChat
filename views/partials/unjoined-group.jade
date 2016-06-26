@@ -5,13 +5,13 @@ div.container
         //- div.firefox-fixed
         div(ng-show="vm.unjoinedGroups.length != 0")
             h1.heading Group Available to Join
-            div.chat-group.col-sm-3.col-xs-6(ng-repeat="group in vm.unjoinedGroups")
-                div.box(ng-click="joinGroup(group.name,$index)",ng-attr-id="{{'box-'+group.name}}")
+            div.chat-group.col-sm-3.col-xs-6(ng-repeat="group in vm.unjoinedGroups.lists")
+                div.box(ng-click="vm.joinGroup(group.name,$index)",ng-attr-id="{{'box-'+group.name}}")
                     div.group-circle.center-block
                         span(ng-bind="group.name | limitTo:2")
                     h3.group-name 
                         span(ng-bind="group.name")
-        h1.no-group-text(ng-show="vm.unjoinedGroups.length == 0") No Group?&nbsp
+        h1.no-group-text(ng-show="ugc.unjoinedGroups.length == 0") No Group?&nbsp
             a(data-toggle="modal",data-target="#add-group-modal") Create One!
     div.col-sm-12.col-xs-12#chat.tab-pane.fade
 
@@ -26,11 +26,11 @@ div#add-group-modal.modal.fade(tabindex="-1",role="dialog",add-modal)
                     strong Create Group
             //- form
             div.modal-body
-                input(ng-model="groupname",placeholder="Name",type="text")
+                input(ng-model="newGroupName",placeholder="Name",type="text")
                 span.highlight
                 span.bar
             div.modal-footer
                 button(type="button",class="btn btn-default",data-dismiss="modal").
                     Close
-                button(ng-click="createGroup()",class="btn btn-default").
+                button(ng-click="vm.createGroup()",class="btn btn-default").
                     Create Group

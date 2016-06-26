@@ -5,7 +5,7 @@ module KitChat.Controllers {
         location: ng.ILocationService;
         window:ng.IWindowService;
 
-        constructor($scope: ng.IScope,$location: ng.ILocationService,$window:ng.IWindowService) {
+        constructor($scope: ng.IScope,$location: ng.ILocationService) {
             this.scope = $scope;
             this.location = $location;
         }
@@ -25,5 +25,6 @@ module KitChat.Controllers {
         private logout(){
             this.location.path('/logout');
         }
+
     }
 }

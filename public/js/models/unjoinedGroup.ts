@@ -28,12 +28,21 @@ module Model{
             );
         }
 
-        private decorateResponse(result:any){
+        private decorateResponse(result: any){
             for(let i = 0 ; i < result.unjoinedgroup.length ; i++){
                 let g = new Group(result.unjoinedgroup[i].name);
                 this.lists.push(g);
             }
             console.log(this.lists);
         }
+
+        public addGroup(name: string){
+            this.lists.push(new Group(name));
+        }
+
+        public remove(idx: number){
+            this.lists.splice(idx,1);
+        }
+
     }
 }

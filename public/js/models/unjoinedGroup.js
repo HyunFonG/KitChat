@@ -26,6 +26,12 @@ var Model;
             }
             console.log(this.lists);
         };
+        UnjoinedGroup.prototype.addGroup = function (name) {
+            this.lists.push(new Group(name));
+        };
+        UnjoinedGroup.prototype.remove = function (idx) {
+            this.lists.splice(idx, 1);
+        };
         return UnjoinedGroup;
     }());
     Model.UnjoinedGroup = UnjoinedGroup;

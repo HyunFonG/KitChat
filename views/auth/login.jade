@@ -9,7 +9,7 @@ block css
 block content
     - var loginResponse = {message}
     
-    div.box(ng-controller="GroupController as gc")
+    div.box
         div.kitchat-branding.center-block
             img(id="kitchat-logo" src="img/Kitchat_Trans.png")
         if loginResponse.message == ""
@@ -24,4 +24,3 @@ block content
             button(type="submit",class="btn btn-default").
                 LOGIN
         a.register-link(href="/register") Don't have an account? Register
-        p {{gc.groups}}

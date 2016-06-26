@@ -50,6 +50,16 @@ module.exports = function (passport) {
 		res.render('index');
 	});
 
+	router.get('/logout',isAuthenticated,function(req,res){
+		req.logout();
+		res.redirect('/login');
+	});
+
+	// API LIST
+	router.get('/api/user',isAuthenticated,function(req,res){
+		res.json({"username":req.user.username});
+	});
+
 	router.get('/api/group',isAuthenticated,function(req,res){
 		Group.find({},function(err,group){
 			// console.log('-------------');
@@ -64,28 +74,12 @@ module.exports = function (passport) {
 						unjoinedgroup.push(group[i]);
 					}
 				}
-				// console.log('--- unjoinedgroup');
-				// console.log(unjoinedgroup);
-				// console.log('--- joinedgroup');
-				// console.log(joinedgroup);
 				res.json({'unjoinedgroup':unjoinedgroup,'joinedgroup':joinedgroup});
 			});
 		});
 	});
 
-	router.get('/api/user',isAuthenticated,function(req,res){
-		res.json({"username":req.user.username});
-	});
-
-	router.get('/logout',isAuthenticated,function(req,res){
-		req.logout();
-		res.redirect('/login');
-	});
-
-	router.post('/createGroup',isAuthenticated,function(req,res){
-		// console.log("DEBUG");
-		// console.log(req.body.groupname);
-		// console.log("END DEBUG");
+	router.post('/api/group/create',isAuthenticated,function(req,res){
 		Group.findOne({ 'name' :  req.body.groupname }, function(err, user) {
 				// In case of any error, return using the done method
 				if (err){
@@ -104,23 +98,22 @@ module.exports = function (passport) {
 		});
 	});
 
-	router.post('/loadMessage',isAuthenticated,function(req,res){
+	router.post('/api/group/join',isAuthenticated,function(req,res){
+		var current_time = (new Date()).getTime();
+		UserJoinedGroup({'username':req.user.username,group:req.body.group,'joined_at':current_time}).save();
+	});
+
+	router.post('/api/group/leave',isAuthenticated,function(req,res){
+		UserJoinedGroup.remove({'username':req.user.username,group:req.body.group},function(err){
+			if(!err) res.json({'status':'REMOVED'});
+		});
+	});
+
+	router.post('/api/group/message',isAuthenticated,function(req,res){
 		UserJoinedGroup.findOne({'username':req.user.username,'group':req.body.groupname},function(err,ujg){
 				ChatMessage.find({'group':req.body.groupname,'create_at':{$gt: ujg.joined_at}}).sort('create_at').exec(function(err,msg){
 					res.json({'message':msg,'cur_user':req.user.username});
 				});
-		});
-	});
-
-	router.post('/joininggroup',isAuthenticated,function(req,res){
-		var current_time = (new Date()).getTime();
-		UserJoinedGroup({'username':req.user.username,group:req.body.group,'joined_at':current_time}).save();
-		res.redirect('/chat');
-	});
-
-	router.post('/leavinggroup',isAuthenticated,function(req,res){
-		UserJoinedGroup.remove({'username':req.user.username,group:req.body.group},function(err){
-			if(!err) res.json({'status':'REMOVED'});
 		});
 	});
 
