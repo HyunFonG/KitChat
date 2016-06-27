@@ -1,38 +1,24 @@
-var Model;
-(function (Model) {
-    var Group = Model.Group;
-    var UnjoinedGroup = (function () {
-        function UnjoinedGroup($http) {
-            this.http = $http;
-            this.lists = [];
-            this.getUnjoinedGroup();
-        }
-        UnjoinedGroup.prototype.getUnjoinedGroup = function () {
-            var _this = this;
-            this.http({
-                method: 'GET',
-                url: '/api/group'
-            }).then(function (result) {
-                console.log('UnjoinedGroup : ', result);
-                _this.decorateResponse(result.data);
-            }, function (error) {
-                console.log(error);
-            });
-        };
-        UnjoinedGroup.prototype.decorateResponse = function (result) {
-            for (var i = 0; i < result.unjoinedgroup.length; i++) {
-                var g = new Group(result.unjoinedgroup[i].name);
-                this.lists.push(g);
+var KitChat;
+(function (KitChat) {
+    var Model;
+    (function (Model) {
+        var Group = KitChat.Model.Group;
+        var UnjoinedGroup = (function () {
+            function UnjoinedGroup(groups) {
+                this.lists = [];
+                for (var i = 0; i < groups.length; i++) {
+                    var g = new Group(groups[i].name);
+                    this.lists.push(g);
+                }
             }
-            console.log(this.lists);
-        };
-        UnjoinedGroup.prototype.addGroup = function (name) {
-            this.lists.push(new Group(name));
-        };
-        UnjoinedGroup.prototype.remove = function (idx) {
-            this.lists.splice(idx, 1);
-        };
-        return UnjoinedGroup;
-    }());
-    Model.UnjoinedGroup = UnjoinedGroup;
-})(Model || (Model = {}));
+            UnjoinedGroup.prototype.addGroup = function (name) {
+                this.lists.push(new Group(name));
+            };
+            UnjoinedGroup.prototype.remove = function (idx) {
+                this.lists.splice(idx, 1);
+            };
+            return UnjoinedGroup;
+        }());
+        Model.UnjoinedGroup = UnjoinedGroup;
+    })(Model = KitChat.Model || (KitChat.Model = {}));
+})(KitChat || (KitChat = {}));

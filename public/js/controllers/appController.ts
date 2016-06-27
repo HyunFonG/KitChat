@@ -3,9 +3,9 @@ module KitChat.Controllers {
     export class AppController {
         scope: ng.IScope;
         location: ng.ILocationService;
-        window:ng.IWindowService;
+        window: ng.IWindowService;
 
-        constructor($scope: ng.IScope,$location: ng.ILocationService) {
+        constructor($scope: ng.IScope,$location: ng.ILocationService,GroupFactory: KitChat.Factory.GroupFactory) {
             this.scope = $scope;
             this.location = $location;
         }

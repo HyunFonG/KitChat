@@ -1,39 +1,17 @@
-module Model{
+module KitChat.Model{
 
-    import Group = Model.Group;
+    import Group = KitChat.Model.Group;
 
     export class UnjoinedGroup{
 
         lists: Group[];
-        http: ng.IHttpService;
 
-        constructor($http:ng.IHttpService){
-            this.http = $http;
+        constructor(groups: any){
             this.lists = [];
-            this.getUnjoinedGroup();
-        }
-
-        public getUnjoinedGroup(){
-            this.http({
-                method: 'GET',
-                url: '/api/group'
-            }).then(
-                (result) => {
-                    console.log('UnjoinedGroup : ',result);
-                    this.decorateResponse(result.data);
-                },
-                (error) => {
-                    console.log(error);
-                }
-            );
-        }
-
-        private decorateResponse(result: any){
-            for(let i = 0 ; i < result.unjoinedgroup.length ; i++){
-                let g = new Group(result.unjoinedgroup[i].name);
+            for(let i = 0 ; i < groups.length ; i++){
+                let g = new Group(groups[i].name);
                 this.lists.push(g);
             }
-            console.log(this.lists);
         }
 
         public addGroup(name: string){

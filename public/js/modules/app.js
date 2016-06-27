@@ -21,9 +21,14 @@ appModule.config(['$routeProvider', function ($routeProvider) {
         });
     }]);
 appModule.constant('Config', Config.Default);
-appModule.controller('AppController', ['$scope', '$location',
-    function ($scope, $location) { return new KitChat.Controllers.AppController($scope, $location); }
+appModule.factory('GroupFactory', ['$http', '$q', 'Config',
+    function ($http, $q, Config) {
+        return new KitChat.Factory.GroupFactory($http, $q, Config);
+    }
 ]);
-appModule.controller('UnjoinedGroupController', ['$scope', '$http', 'Config',
-    function ($scope, $http, Config) { return new KitChat.Controllers.UnjoinedGroupController($scope, $http, Config); }
+appModule.controller('AppController', ['$scope', '$location', 'GroupFactory',
+    function ($scope, $location, GroupFactory) { return new KitChat.Controllers.AppController($scope, $location, GroupFactory); }
+]);
+appModule.controller('UnjoinedGroupController', ['$scope', '$http', 'Config', 'GroupFactory',
+    function ($scope, $http, Config, GroupFactory) { return new KitChat.Controllers.UnjoinedGroupController($scope, $http, Config, GroupFactory); }
 ]);

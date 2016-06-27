@@ -1,4 +1,4 @@
-module Model{
+module KitChat.Model{
     export class Group{
         name:string;
 

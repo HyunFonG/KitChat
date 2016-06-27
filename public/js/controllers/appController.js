@@ -3,7 +3,7 @@ var KitChat;
     var Controllers;
     (function (Controllers) {
         var AppController = (function () {
-            function AppController($scope, $location) {
+            function AppController($scope, $location, GroupFactory) {
                 this.scope = $scope;
                 this.location = $location;
             }

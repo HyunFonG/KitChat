@@ -1,6 +1,7 @@
 module KitChat.Controllers {
 
-    import UnjoinedGroup = Model.UnjoinedGroup;
+    import Group = KitChat.Model.Group;
+    import UnjoinedGroup = KitChat.Model.UnjoinedGroup;
 
     export class UnjoinedGroupController {
         scope: ng.IScope;
@@ -8,11 +9,22 @@ module KitChat.Controllers {
         unjoinedGroups: UnjoinedGroup;
         config: Config;
 
-        constructor($scope: ng.IScope,$http: ng.IHttpService,config:Config) {
+        constructor($scope: ng.IScope,$http: ng.IHttpService,config:Config,groupFactory: KitChat.Factory.GroupFactory) {
             this.scope = $scope;
             this.http = $http;
-            this.unjoinedGroups = new UnjoinedGroup(this.http);
             this.config = config;
+
+            groupFactory.getUnjoinedGroup().then(
+                (result) => {
+                    console.log(result);
+                    this.unjoinedGroups = new UnjoinedGroup(result);
+                    console.log('UNJCTRL:',this.unjoinedGroups);
+                },
+                (error) => {
+                    console.log('error');
+                    console.log(error);
+                }
+            );
         }
 
         public createGroup(){
@@ -26,8 +38,9 @@ module KitChat.Controllers {
             }).then(
                 (result) => {
                     console.log(result);
-                    this.unjoinedGroups.addGroup(this.scope['newGroupName']);
-                    this.scope.dismiss();
+                    this.unjoinedGroups.addGroup(this.scope['newGroupName']); //TODO -> MAKE CONSTRUCTOR
+                    // this.unjoinedGroups.push(new Group(this.scope['newGroupName']));
+                    // this.scope.dismiss();
                 },
                 (error) => {
                     console.log(error);

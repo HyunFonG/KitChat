@@ -28,11 +28,18 @@ appModule.config(['$routeProvider', ($routeProvider) => {
 // Initiate Constant Value
 appModule.constant('Config', Config.Default);
 
-// Initiate Controller
-appModule.controller('AppController',['$scope','$location',
-    ($scope,$location) => new KitChat.Controllers.AppController($scope,$location)
+// Initiate Factory
+appModule.factory('GroupFactory', ['$http','$q','Config',
+    ($http,$q,Config) => {
+        return new KitChat.Factory.GroupFactory($http,$q,Config);
+    }
 ]);
 
-appModule.controller('UnjoinedGroupController',['$scope','$http','Config',
-    ($scope,$http,Config) => new KitChat.Controllers.UnjoinedGroupController($scope,$http,Config)
+// Initiate Controller
+appModule.controller('AppController',['$scope','$location','GroupFactory',
+    ($scope,$location,GroupFactory) => new KitChat.Controllers.AppController($scope,$location,GroupFactory)
+]);
+
+appModule.controller('UnjoinedGroupController',['$scope','$http','Config','GroupFactory',
+    ($scope,$http,Config,GroupFactory) => new KitChat.Controllers.UnjoinedGroupController($scope,$http,Config,GroupFactory)
 ]);
