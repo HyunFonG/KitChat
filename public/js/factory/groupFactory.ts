@@ -7,8 +7,8 @@ module KitChat.Factory{
         http: ng.IHttpService;
         q: ng.IQService;
         config: any;
-        private joinedGroup: Group[];
-        private unjoinedGroup: Group[];
+        joinedGroup: Group[];
+        unjoinedGroup: Group[];
 
         constructor($http: ng.IHttpService, $q: ng.IQService, config: any){
             this.http = $http;
@@ -56,10 +56,23 @@ module KitChat.Factory{
             return deferred.promise;
         }
 
+        public addJoinedGroup(name: string){
+            this.joinedGroup.push(new Group(name));
+        }
+
         public getUnjoinedGroup(){
             var deferred = this.q.defer();
             deferred.resolve(this.unjoinedGroup);
             return deferred.promise;
+        }
+
+        public addUnjoinedGroup(name: string){
+            this.unjoinedGroup.push(new Group(name));
+        }
+
+        public removeUnjoinedGroup(idx: number){
+            console.log(idx);
+            this.unjoinedGroup.splice(idx,1);
         }
     }
 }

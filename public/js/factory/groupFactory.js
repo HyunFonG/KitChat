@@ -43,10 +43,20 @@ var KitChat;
                 deferred.resolve(this.joinedGroup);
                 return deferred.promise;
             };
+            GroupFactory.prototype.addJoinedGroup = function (name) {
+                this.joinedGroup.push(new Group(name));
+            };
             GroupFactory.prototype.getUnjoinedGroup = function () {
                 var deferred = this.q.defer();
                 deferred.resolve(this.unjoinedGroup);
                 return deferred.promise;
+            };
+            GroupFactory.prototype.addUnjoinedGroup = function (name) {
+                this.unjoinedGroup.push(new Group(name));
+            };
+            GroupFactory.prototype.removeUnjoinedGroup = function (idx) {
+                console.log(idx);
+                this.unjoinedGroup.splice(idx, 1);
             };
             return GroupFactory;
         }());

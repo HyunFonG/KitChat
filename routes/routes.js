@@ -101,6 +101,7 @@ module.exports = function (passport) {
 	router.post('/api/group/join',isAuthenticated,function(req,res){
 		var current_time = (new Date()).getTime();
 		UserJoinedGroup({'username':req.user.username,group:req.body.group,'joined_at':current_time}).save();
+		res.json({status:'join success'});
 	});
 
 	router.post('/api/group/leave',isAuthenticated,function(req,res){

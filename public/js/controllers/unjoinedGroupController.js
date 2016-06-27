@@ -9,9 +9,11 @@ var KitChat;
                 this.scope = $scope;
                 this.http = $http;
                 this.config = config;
+                this.groupFactory = groupFactory;
                 groupFactory.getUnjoinedGroup().then(function (result) {
                     console.log(result);
                     _this.unjoinedGroups = new UnjoinedGroup(result);
+                    _this.scope.unjoinedGroups = groupFactory.unjoinedGroup;
                     console.log('UNJCTRL:', _this.unjoinedGroups);
                 }, function (error) {
                     console.log('error');
@@ -29,13 +31,14 @@ var KitChat;
                     url: this.config.createGroupURL
                 }).then(function (result) {
                     console.log(result);
-                    _this.unjoinedGroups.addGroup(_this.scope['newGroupName']);
+                    _this.groupFactory.addUnjoinedGroup(_this.scope['newGroupName']);
                 }, function (error) {
                     console.log(error);
                 });
             };
             UnjoinedGroupController.prototype.joinGroup = function (name, idx) {
                 var _this = this;
+                console.log('prepare to join');
                 var payload = {
                     group: name
                 };
@@ -44,8 +47,9 @@ var KitChat;
                     data: payload,
                     url: this.config.joinGroupURL
                 }).then(function (result) {
+                    console.log("JOINED");
                     console.log(result);
-                    _this.unjoinedGroups.remove(idx);
+                    _this.groupFactory.removeUnjoinedGroup(idx);
                 }, function (error) {
                     console.log(error);
                 });
