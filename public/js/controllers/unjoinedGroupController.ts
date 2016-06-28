@@ -6,7 +6,7 @@ module KitChat.Controllers {
     export class UnjoinedGroupController {
         scope: ng.IScope;
         http: ng.IHttpService;
-        unjoinedGroups: UnjoinedGroup;
+        // unjoinedGroups: UnjoinedGroup;
         config: Config;
         groupFactory: KitChat.Factory.GroupFactory;
 
@@ -19,12 +19,11 @@ module KitChat.Controllers {
             groupFactory.getUnjoinedGroup().then(
                 (result) => {
                     console.log(result);
-                    this.unjoinedGroups = new UnjoinedGroup(result);
-                    this.scope.unjoinedGroups = groupFactory.unjoinedGroup;
-                    console.log('UNJCTRL:',this.unjoinedGroups);
+                    // this.unjoinedGroups = new UnjoinedGroup(result);
+                    this.scope.unjoinedGroups = this.groupFactory.unjoinedGroup;
+                    // console.log('UNJCTRL:',this.unjoinedGroups);
                 },
                 (error) => {
-                    console.log('error');
                     console.log(error);
                 }
             );

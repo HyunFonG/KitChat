@@ -1,1 +1,9 @@
-p JOINED ROOM!
+div#chat.col-sm-12.col-xs-12
+    h1.heading Chat Room
+    div.chat-item.col-sm-6.col-xs-12(ng-repeat="room in joinedGroups")
+        div.chat-box.col-sm-12.col-xs-12(ng-click="vm.navigateToChatRoom('/room/'+room.name,$index)")
+            div.col-sm-3.col-xs-3.group-circle
+                span(ng-bind="room.name | limitTo:2")
+            div.col-sm-9.col-xs-9.group-name
+                div.row.chat-group-name
+                    span(ng-bind="room.name")

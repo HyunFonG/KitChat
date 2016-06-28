@@ -32,3 +32,9 @@ appModule.controller('AppController', ['$scope', '$location', 'GroupFactory',
 appModule.controller('UnjoinedGroupController', ['$scope', '$http', 'Config', 'GroupFactory',
     function ($scope, $http, Config, GroupFactory) { return new KitChat.Controllers.UnjoinedGroupController($scope, $http, Config, GroupFactory); }
 ]);
+appModule.controller('JoinedGroupController', ['$scope', '$http', '$location', 'Config', 'GroupFactory',
+    function ($scope, $http, $location, Config, GroupFactory) { return new KitChat.Controllers.JoinedGroupController($scope, $http, $location, Config, GroupFactory); }
+]);
+appModule.controller('ChatRoomController', ['$scope', '$http', '$location', 'Config', 'GroupFactory',
+    function ($scope, $http, $location, Config, GroupFactory) { return new KitChat.Controllers.ChatRoomController($scope, $http, $location, Config, GroupFactory); }
+]);

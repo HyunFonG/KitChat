@@ -1,20 +1,21 @@
-div#chat-room
-    div.chat-room-title
-        div.back-btn(ng-click="navigateBack()")
-            i.fa.fa-chevron-left(aria-hidden="true")
-            span.back-text &nbspBack
-        span.room-name(ng-bind="roomTitle")
-        div.leave-gr-btn(ng-click="leaveGroup()")
-            span.leave-gr-text Leave group&nbsp
-            i.fa.fa-sign-out(aria-hidden="true")
-    div.chat-room-message#to-scroll
-        div.message(ng-repeat="message in messagesList",ng-class="getLeftRightClass($index,messagesList,currentUser,0)")
-            p.sender-name(ng-show="message.username != currentUser") {{message.username}}
-            //p(ng-show="message.username == currentUser") {{message.create_at}}
-            p(ng-class="getLeftRightClass($index,messagesList,currentUser,1)") {{message.message}}
-            p {{message.create_at | date:'MM/dd/yyyy HH:mm:ss a'}}
-        
-    div.chat-room-textfield
-        div.wrapper
-            input.message-box(type="text",placeholder="Type Message Here",ng-model="messageToSend",ng-keyup="$event.keyCode == 13 && sendMessage()")
-            button.btn.btn-default(type="button",ng-click="sendMessage()") Send
+div#chat.col-sm-12.col-xs-12
+    div#chat-room
+        div.chat-room-title
+            div.back-btn(ng-click="navigateBack()")
+                i.fa.fa-chevron-left(aria-hidden="true")
+                span.back-text &nbspBack
+            span.room-name(ng-bind="roomTitle")
+            div.leave-gr-btn(ng-click="leaveGroup()")
+                span.leave-gr-text Leave group&nbsp
+                i.fa.fa-sign-out(aria-hidden="true")
+        div.chat-room-message#to-scroll
+            div.message(ng-repeat="message in messagesList",ng-class="getLeftRightClass($index,messagesList,currentUser,0)")
+                p.sender-name(ng-show="message.username != currentUser") {{message.username}}
+                //p(ng-show="message.username == currentUser") {{message.create_at}}
+                p(ng-class="getLeftRightClass($index,messagesList,currentUser,1)") {{message.message}}
+                p {{message.create_at | date:'MM/dd/yyyy HH:mm:ss a'}}
+            
+        div.chat-room-textfield
+            div.wrapper
+                input.message-box(type="text",placeholder="Type Message Here",ng-model="messageToSend",ng-keyup="$event.keyCode == 13 && sendMessage()")
+                button.btn.btn-default(type="button",ng-click="sendMessage()") Send
